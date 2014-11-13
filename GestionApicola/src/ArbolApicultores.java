@@ -13,7 +13,7 @@ public class ArbolApicultores {
 	}
 	/**
 	 * Establece el primer nodo del árbol.
-	 * @param primerNodo Primer agricultor del árbol.
+	 * @param primerNodo Primer apicultor del árbol.
 	 */
 	public void setPrimerNodo(Apicultor primerNodo) {
 		this.primerNodo = primerNodo;
@@ -25,7 +25,7 @@ public class ArbolApicultores {
 	}
 	/**
 	 * Constructor que recibe el atributo para el nodo raíz del árbol.
-	 * @param primerNodo Primer agricultor del árbol.
+	 * @param primerNodo Primer apicultor del árbol.
 	 */
 	public ArbolApicultores(Apicultor primerNodo) {
 		this.primerNodo = primerNodo;
