@@ -1,4 +1,7 @@
-
+/**
+ * Un apiario hereda de punto, tiene una capacidad y un Agricultor.
+ * Se almacenan en un array de puntos.
+ */
 public class Apiario extends Punto{
 	/**
 	 * Capacidad del apiario en litros por mes.

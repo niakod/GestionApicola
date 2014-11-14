@@ -1,4 +1,6 @@
-
+/**
+ * Apicultor contiene los datos de las personas encargadas de los apiarios, nodo de ArbolApicultores.
+ */
 public class Apicultor {
 	/**
 	 * Cédula de identidad del apicultor.

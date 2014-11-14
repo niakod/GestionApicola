@@ -1,4 +1,6 @@
-
+/**
+ * Estructura para el árbol de Apicultores.
+ */
 public class ArbolApicultores {
 	/**
 	 * Apuntador hacia el primer Apicultor del árbol.

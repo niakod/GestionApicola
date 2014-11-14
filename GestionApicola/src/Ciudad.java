@@ -1,4 +1,8 @@
-
+/**
+ * Hereda de punto.
+ * No contiene más atributos que los heredados.
+ * Se almacena en un array de puntos.
+ */
 public class Ciudad extends Punto{
 	/**
 	 * Constructor vacío.

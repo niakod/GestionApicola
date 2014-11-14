@@ -1,4 +1,7 @@
-
+/**
+ * Clase que se utiliza para devolver los resultados de los métodos. <br/>
+ * Tendrá un tipo de error y opcionalmente, si existen, un valor entero y un valor de tipo String.
+ */
 public class TipoRetorno {
 	/**
 	 * Atributo utilizado para devolver un valor del enum TipoError según el estado de la funcionalidad solicitada.

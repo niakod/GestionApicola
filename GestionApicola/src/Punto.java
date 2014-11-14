@@ -1,4 +1,6 @@
-
+/**
+ * De esta clase heredan todos los puntos geolocalizables (Ciudad, CentroDeExtraccion y Apiario).
+ */
 public class Punto {
 	/**
 	 * Nombre que identifica a un punto.

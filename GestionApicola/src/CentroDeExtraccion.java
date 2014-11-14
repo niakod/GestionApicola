@@ -1,4 +1,7 @@
-
+/**
+ * Cada centro de extracción tiene una capacidad, hereda de punto.
+ * Se almacena en un array de puntos.
+ */
 public class CentroDeExtraccion extends Punto{
 	/**
 	 * Capacidad de extracción en litros por mes.
