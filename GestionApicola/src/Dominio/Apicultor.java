@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Apicultor contiene los datos de las personas encargadas de los apiarios, nodo de ArbolApicultores.
  */

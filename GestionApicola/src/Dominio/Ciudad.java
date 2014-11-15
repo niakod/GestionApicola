@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Hereda de punto.
  * No contiene más atributos que los heredados.

@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Estructura para el árbol de Apicultores.
  */

@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Establece los tipos de puntos que existen en el sistema: CIUDAD, APIARIO, CENTRO_EXTRACCION.
  */

@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Un Tramo une dos Puntos y tiene un peso. <br/>
  * Nodo de ListaTramos.

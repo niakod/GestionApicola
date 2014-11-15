@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Un apiario hereda de punto, tiene una capacidad y un Agricultor.
  * Se almacenan en un array de puntos.

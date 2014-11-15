@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * De esta clase heredan todos los puntos geolocalizables (Ciudad, CentroDeExtraccion y Apiario).
  */

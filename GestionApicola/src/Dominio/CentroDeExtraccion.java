@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Cada centro de extracción tiene una capacidad, hereda de punto.
  * Se almacena en un array de puntos.

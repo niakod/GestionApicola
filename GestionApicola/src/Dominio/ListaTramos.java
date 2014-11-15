@@ -1,3 +1,4 @@
+package Dominio;
 /**
  * Lista simplemente enlazada para almacer los tramos.
  */
