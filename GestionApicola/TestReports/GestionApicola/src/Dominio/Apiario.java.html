@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Apiario.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Apiario.java</span></div><h1>Apiario.java</h1><pre class="source lang-java linenums">package Dominio;
+
+/**
+ * Un apiario hereda de punto, tiene una capacidad y un Agricultor. Se almacenan
+ * en un array de puntos.
+ */
+public class Apiario extends Punto {
+	/**
+	 * Capacidad del apiario en litros por mes.
+	 */
+	private int capacidad;
+	/**
+	 * Apicultor encargado del apiario.
+	 */
+	private Apicultor apicultor;
+
+	/**
+	 * Obtiene la capacidad del apiario.
+	 * 
+	 * @return Capacidad en litros por mes.
+	 */
+	public int getCapacidad() {
+<span class="nc" id="L23">		return capacidad;</span>
+	}
+
+	/**
+	 * Establece la capacidad del apiario.
+	 * 
+	 * @param capacidad
+	 *            Capacidad en litros por mes,
+	 */
+	public void setCapacidad(int capacidad) {
+<span class="nc" id="L33">		this.capacidad = capacidad;</span>
+<span class="nc" id="L34">	}</span>
+
+	/**
+	 * Obtiene al apicultor encargado del apiario.
+	 * 
+	 * @return Apicultor a cargo del apiario.
+	 */
+	public Apicultor getApicultor() {
+<span class="nc" id="L42">		return apicultor;</span>
+	}
+
+	/**
+	 * Establece el apicultor a cargo del apiario.
+	 * 
+	 * @param apicultor
+	 *            Apicultor encargado del apiario.
+	 */
+	public void setApicultor(Apicultor apicultor) {
+<span class="nc" id="L52">		this.apicultor = apicultor;</span>
+<span class="nc" id="L53">	}</span>
+
+	/**
+	 * Constructor vacío.
+	 */
+<span class="nc" id="L58">	public Apiario() {</span>
+<span class="nc" id="L59">	}</span>
+
+	/**
+	 * Constructor que recibe todos los atributos.
+	 * 
+	 * @param vNombre
+	 *            Nombre del apiario.
+	 * @param vCoordX
+	 *            Coordenada del eje X.
+	 * @param vCoordY
+	 *            Coordenada del eje Y.
+	 * @param vCapacidad
+	 *            Capacidad en litros por mes.
+	 * @param vApicultor
+	 *            Apicultor a cargo del apiario.
+	 */
+	public Apiario(String vNombre, double vCoordX, double vCoordY,
+			int vCapacidad, Apicultor vApicultor) {
+<span class="nc" id="L77">		super(vNombre, vCoordX, vCoordY);</span>
+<span class="nc" id="L78">		this.capacidad = vCapacidad;</span>
+<span class="nc" id="L79">		this.apicultor = vApicultor;</span>
+<span class="nc" id="L80">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Tramo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Tramo.java</span></div><h1>Tramo.java</h1><pre class="source lang-java linenums">package Dominio;
+
+/**
+ * Un Tramo une dos Puntos y tiene un peso. &lt;br/&gt;
+ * Nodo de ListaTramos.
+ */
+public class Tramo {
+	/**
+	 * Punto inicial del tramo.
+	 */
+	private Punto puntoI;
+	/**
+	 * Punto final del tramo.
+	 */
+	private Punto puntoF;
+	/**
+	 * Peso del tramo. Distancia entre un punto y otro.
+	 */
+	private int peso;
+	/**
+	 * Apuntador al siguiente tramo de la lista.
+	 */
+	private Tramo siguiente;
+
+	/**
+	 * Obtiene el punto de inicio del tramo.
+	 * 
+	 * @return Punto de inicio.
+	 */
+	public Punto getPuntoI() {
+<span class="nc" id="L31">		return puntoI;</span>
+	}
+
+	/**
+	 * Establece el punto de inicio del tramo.
+	 * 
+	 * @param puntoI
+	 *            Punto de inicio.
+	 */
+	public void setPuntoI(Punto puntoI) {
+<span class="nc" id="L41">		this.puntoI = puntoI;</span>
+<span class="nc" id="L42">	}</span>
+
+	/**
+	 * Obtiene el punto final del tramo.
+	 * 
+	 * @return Punto final.
+	 */
+	public Punto getPuntoF() {
+<span class="nc" id="L50">		return puntoF;</span>
+	}
+
+	/**
+	 * Establece el punto final del tramo.
+	 * 
+	 * @param puntoF
+	 *            Punto final.
+	 */
+	public void setPuntoF(Punto puntoF) {
+<span class="nc" id="L60">		this.puntoF = puntoF;</span>
+<span class="nc" id="L61">	}</span>
+
+	/**
+	 * Obtiene el peso del tramo.
+	 * 
+	 * @return Peso del tramo.
+	 */
+	public int getPeso() {
+<span class="nc" id="L69">		return peso;</span>
+	}
+
+	/**
+	 * Establece el peso del tramo.
+	 * 
+	 * @param peso
+	 *            Peso del tramo.
+	 */
+	public void setPeso(int peso) {
+<span class="nc" id="L79">		this.peso = peso;</span>
+<span class="nc" id="L80">	}</span>
+
+	/**
+	 * Obtiene el siguiente nodo de ListaTramos.
+	 * 
+	 * @return Siguiente tramo.
+	 */
+	public Tramo getSiguiente() {
+<span class="nc" id="L88">		return siguiente;</span>
+	}
+
+	/**
+	 * Establece el siguiente nodo de ListaTramo.
+	 * 
+	 * @param siguiente
+	 *            Siguiente tramo.
+	 */
+	public void setSiguiente(Tramo siguiente) {
+<span class="nc" id="L98">		this.siguiente = siguiente;</span>
+<span class="nc" id="L99">	}</span>
+
+	/**
+	 * Constructor vacío.
+	 */
+<span class="nc" id="L104">	public Tramo() {</span>
+<span class="nc" id="L105">	}</span>
+
+	/**
+	 * Constructor que recibe todos los atributos de un tramo.
+	 * 
+	 * @param puntoI
+	 *            Punto inicial del tramo.
+	 * @param puntoF
+	 *            Punto final del tramo.
+	 * @param peso
+	 *            Peso del tramo.
+	 * @param siguiente
+	 *            Siguiente tramo-nodo de ListaTramo.
+	 */
+<span class="nc" id="L119">	public Tramo(Punto puntoI, Punto puntoF, int peso, Tramo siguiente) {</span>
+<span class="nc" id="L120">		this.puntoI = puntoI;</span>
+<span class="nc" id="L121">		this.puntoF = puntoF;</span>
+<span class="nc" id="L122">		this.peso = peso;</span>
+<span class="nc" id="L123">		this.siguiente = siguiente;</span>
+<span class="nc" id="L124">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>

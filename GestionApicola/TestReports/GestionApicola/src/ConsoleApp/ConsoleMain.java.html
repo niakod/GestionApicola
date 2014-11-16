@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ConsoleMain.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">ConsoleApp</a> &gt; <span class="el_source">ConsoleMain.java</span></div><h1>ConsoleMain.java</h1><pre class="source lang-java linenums">package ConsoleApp;
+
+import java.io.IOException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+/**
+ * Interfaz de usuario, consola.
+ */
+<span class="nc" id="L14">public class ConsoleMain {</span>
+<span class="nc" id="L15">	private static int intOptMenu = 0;</span>
+
+	/**
+	 * Metodo principal de la aplicacion.
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException {
+<span class="nc" id="L24">		Scanner scan = new Scanner(System.in);</span>
+		try {
+			do {
+<span class="nc" id="L27">				showMenu(); // Muestra el menú de opciones.</span>
+<span class="nc" id="L28">				intOptMenu = scan.nextInt();</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">				switch (intOptMenu) {</span>
+				case 1:
+<span class="nc" id="L31">					inicializarSistema(scan);</span>
+					break;
+				}
+<span class="nc bnc" id="L34" title="All 2 branches missed.">			} while (intOptMenu != 0);</span>
+<span class="nc" id="L35">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L36">			System.out.println(&quot;Debe ingresar un número entero.&quot;);</span>
+		}
+<span class="nc" id="L38">	}</span>
+
+	/**
+	 * Muestra en consola el menú de opciones de la aplicación.
+	 */
+	private static void showMenu() {
+<span class="nc" id="L44">		System.out.println(&quot;Ingrese la opción deseada:&quot;);</span>
+<span class="nc" id="L45">		System.out.println(&quot;1 - Inicializar el sistema.&quot;);</span>
+
+<span class="nc" id="L47">		System.out.println(&quot;0 - Salir de la aplicación.&quot;);</span>
+<span class="nc" id="L48">	}</span>
+
+	/**
+	 * Inicializa el sistema.
+	 * 
+	 * @param s
+	 *            Scanner para leer datos ingresados por el usuario desde la
+	 *            consola.
+	 * @throws IOException
+	 */
+	private static void inicializarSistema(Scanner s) throws IOException {
+<span class="nc" id="L59">		System.out</span>
+<span class="nc" id="L60">				.println(&quot;Ingrese la cantidad máxima de puntos que soportará el sistema:&quot;);</span>
+		try {
+<span class="nc" id="L62">			int cp = s.nextInt();</span>
+<span class="nc" id="L63">			TipoRetorno ret = Sistema.getInstancia().inicializarSistema(cp);</span>
+<span class="nc" id="L64">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">			if (ret.getTipoError() == TipoError.ERROR_1) {</span>
+<span class="nc" id="L66">				System.out</span>
+<span class="nc" id="L67">						.println(&quot;La cantidad máxima de puntos debe ser mayor a cero.&quot;);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">			} else if (ret.getTipoError() == TipoError.ERROR_2) {</span>
+<span class="nc" id="L69">				System.out.println(&quot;Debe destruír el sistema actual primero.&quot;);</span>
+			}
+<span class="nc" id="L71">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L72">			System.out.println(&quot;Debe ingresar un número entero&quot;);</span>
+		}
+<span class="nc" id="L74">		System.in.read();</span>
+<span class="nc" id="L75">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>

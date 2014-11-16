@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Apicultor.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Apicultor.java</span></div><h1>Apicultor.java</h1><pre class="source lang-java linenums">package Dominio;
+
+/**
+ * Apicultor contiene los datos de las personas encargadas de los apiarios, nodo
+ * de ArbolApicultores.
+ */
+<span class="nc" id="L7">public class Apicultor {</span>
+	/**
+	 * Cédula de identidad del apicultor.
+	 */
+	private int cedula;
+	/**
+	 * Nombre del apicultor.
+	 */
+	private String nombre;
+	/**
+	 * Direccion del apicultor.
+	 */
+	private String direccion;
+	/**
+	 * Dirección de correo electrónico del apicultor.
+	 */
+	private String email;
+	/**
+	 * Celular del apicultor.
+	 */
+	private String celular;
+	/**
+	 * Nodo Apicultor con cédula menor al actual (nodo izquierdo del árbol).
+	 */
+	private Apicultor menor;
+	/**
+	 * Nodo Apicultor con cédula mayor al actual (nodo derecho del árbol).
+	 */
+	private Apicultor mayor;
+
+	/**
+	 * Getter para el atributo cedula.
+	 * 
+	 * @return Cédula del apicultor.
+	 */
+	public int getCedula() {
+<span class="nc" id="L43">		return cedula;</span>
+	}
+
+	/**
+	 * Establece el valor del atributo cedula..
+	 * 
+	 * @param cedula
+	 *            Cédula del apicultor.
+	 */
+	public void setCedula(int cedula) {
+<span class="nc" id="L53">		this.cedula = cedula;</span>
+<span class="nc" id="L54">	}</span>
+
+	/**
+	 * Obtiene el atributo nombre.
+	 * 
+	 * @return Nombre del apicultor.
+	 */
+	public String getNombre() {
+<span class="nc" id="L62">		return nombre;</span>
+	}
+
+	/**
+	 * Establece el atributo nombre.
+	 * 
+	 * @param nombre
+	 *            Nombre del apicultor.
+	 */
+	public void setNombre(String nombre) {
+<span class="nc" id="L72">		this.nombre = nombre;</span>
+<span class="nc" id="L73">	}</span>
+
+	/**
+	 * Obtiene el atributo direccion.
+	 * 
+	 * @return Dirección del apicultor.
+	 */
+	public String getDireccion() {
+<span class="nc" id="L81">		return direccion;</span>
+	}
+
+	/**
+	 * Establece el valor del atributo direccion.
+	 * 
+	 * @param direccion
+	 *            Dirección del apicultor.
+	 */
+	public void setDireccion(String direccion) {
+<span class="nc" id="L91">		this.direccion = direccion;</span>
+<span class="nc" id="L92">	}</span>
+
+	/**
+	 * Obtiene el atributo email
+	 * 
+	 * @return Dirección de correo electrónico del apicultor.
+	 */
+	public String getEmail() {
+<span class="nc" id="L100">		return email;</span>
+	}
+
+	/**
+	 * Establece el valor del atributo email.
+	 * 
+	 * @param email
+	 *            Dirección de correo electrónico del apicultor.
+	 */
+	public void setEmail(String email) {
+<span class="nc" id="L110">		this.email = email;</span>
+<span class="nc" id="L111">	}</span>
+
+	/**
+	 * Obtiene el valor del atributo celular.
+	 * 
+	 * @return Celular del apicultor.
+	 */
+	public String getCelular() {
+<span class="nc" id="L119">		return celular;</span>
+	}
+
+	/**
+	 * Establece el valor del atributo celular.
+	 * 
+	 * @param celular
+	 *            Número de teléfono móvil del apicultor.
+	 */
+	public void setCelular(String celular) {
+<span class="nc" id="L129">		this.celular = celular;</span>
+<span class="nc" id="L130">	}</span>
+
+	/**
+	 * Obtiene el nodo izquierdo del árbol con respecto al actual.
+	 * 
+	 * @return Nodo Apicultor izquierdo.
+	 */
+	public Apicultor getMenor() {
+<span class="nc" id="L138">		return menor;</span>
+	}
+
+	/**
+	 * Establece el nodo izquierdo del árbol con respecto al actual.
+	 * 
+	 * @param menor
+	 *            Nodo Apicultor izquierdo.
+	 */
+	public void setMenor(Apicultor menor) {
+<span class="nc" id="L148">		this.menor = menor;</span>
+<span class="nc" id="L149">	}</span>
+
+	/**
+	 * Obtiene el nodo derecho del árbol con respecto al actual.
+	 * 
+	 * @return Nodo Apicultor derecho.
+	 */
+	public Apicultor getMayor() {
+<span class="nc" id="L157">		return mayor;</span>
+	}
+
+	/**
+	 * Establece el nodo derecho del árbol con respecto al actual.
+	 * 
+	 * @param mayor
+	 *            Nodo Apicultor derecho.
+	 */
+	public void setMayor(Apicultor mayor) {
+<span class="nc" id="L167">		this.mayor = mayor;</span>
+<span class="nc" id="L168">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>

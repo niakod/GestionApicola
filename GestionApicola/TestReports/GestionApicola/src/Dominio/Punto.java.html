@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Punto.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Punto.java</span></div><h1>Punto.java</h1><pre class="source lang-java linenums">package Dominio;
+
+/**
+ * De esta clase heredan todos los puntos geolocalizables (Ciudad,
+ * CentroDeExtraccion y Apiario).
+ */
+public class Punto {
+	/**
+	 * Nombre que identifica a un punto.
+	 */
+	private String nombre;
+	/**
+	 * Coordenada del eje X del punto.
+	 */
+	private double coordX;
+	/**
+	 * Coordenada correspondiente al eje Y del punto.
+	 */
+	private double coordY;
+
+	/**
+	 * Getter del atributo nombre.
+	 * 
+	 * @return Valor del atributo nombre del punto.
+	 */
+	public String getNombre() {
+<span class="nc" id="L27">		return nombre;</span>
+	}
+
+	/**
+	 * Setter del atributo nombre.
+	 * 
+	 * @param nombre
+	 *            Valor que se asignará al atributo nombre.
+	 */
+	public void setNombre(String nombre) {
+<span class="nc" id="L37">		this.nombre = nombre;</span>
+<span class="nc" id="L38">	}</span>
+
+	/**
+	 * Getter del atributo coordX.
+	 * 
+	 * @return Valor de la coordenada para el eje X del punto.
+	 */
+	public double getCoordX() {
+<span class="nc" id="L46">		return coordX;</span>
+	}
+
+	/**
+	 * Setter para el atributo coordX
+	 * 
+	 * @param coordX
+	 *            Valor que se asignará a la coordenada del eje X del punto.
+	 */
+	public void setCoordX(double coordX) {
+<span class="nc" id="L56">		this.coordX = coordX;</span>
+<span class="nc" id="L57">	}</span>
+
+	/**
+	 * Getter para el atributo coordY.
+	 * 
+	 * @return Valor de la coordenada para el eje Y del punto.
+	 */
+	public double getCoordY() {
+<span class="nc" id="L65">		return coordY;</span>
+	}
+
+	/**
+	 * Setter para el atributo coordY.
+	 * 
+	 * @param coordY
+	 *            Valor que se asignará al eje Y del punto.
+	 */
+	public void setCoordY(double coordY) {
+<span class="nc" id="L75">		this.coordY = coordY;</span>
+<span class="nc" id="L76">	}</span>
+
+	/**
+	 * Constructor que recibe todos los parámetro.
+	 * 
+	 * @param vNombre
+	 *            Nombre del punto.
+	 * @param vCoordX
+	 *            Valor de la coordenada para el eje X.
+	 * @param vCoordY
+	 *            Valor de la coordenada para el eje Y.
+	 */
+<span class="nc" id="L88">	public Punto(String vNombre, double vCoordX, double vCoordY) {</span>
+<span class="nc" id="L89">		this.nombre = vNombre;</span>
+<span class="nc" id="L90">		this.coordX = vCoordX;</span>
+<span class="nc" id="L91">		this.coordY = vCoordY;</span>
+<span class="nc" id="L92">	}</span>
+
+	/**
+	 * Constructor vacío.
+	 */
+<span class="nc" id="L97">	public Punto() {</span>
+<span class="nc" id="L98">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>
