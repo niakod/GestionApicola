@@ -76,6 +76,10 @@ public class ConsoleMain {
 		}
 		System.in.read();
 	}
+	/**
+	 * Destruye el sistema.
+	 * @throws IOException
+	 */
 	private static void destruirSistema() throws IOException{
 		TipoRetorno ret = Sistema.getInstancia().destruirSistema();
 		System.out.println(ret.getTipoError().toString());
