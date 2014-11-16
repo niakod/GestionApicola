@@ -43,15 +43,48 @@ public class ArbolApicultores {
 	public ArbolApicultores(Apicultor primerNodo) {
 		this.primerNodo = primerNodo;
 	}
-	
+	/**
+	 * Agrega un nuevo apicultor al árbol de apicultores.
+	 * @param nodoApicultor Nuevo Apicultor.
+	 * @return true si se agrego, false si ya existía un apicultor con la cédula ingresada y no pudo ser agregado.
+	 */
 	public boolean addApicultor(Apicultor nodoApicultor){
 		boolean aux = false;
+		Apicultor currentNodo = this.primerNodo;
+		//Si el primer nodo está vacío se agrega el nuevo nodo como raíz del árbol:
 		if(this.primerNodo == null){
 			this.primerNodo = nodoApicultor;
 			aux = true;
 		}
+		//Sino, si no existe un apicultor con la cédula del nuevo nodo:
 		else if(!existeApicultor(nodoApicultor,this.primerNodo)){
-			//TODO: Recorrer el arbol, según el valor de la cédula hasta encontrar un apuntador a null.
+			//Mientras no se agregue el nuevo nodo:
+			while (aux == false){
+				//Si el nuevo nodo es menor al nodo actual:
+				if (currentNodo.getCedula() > nodoApicultor.getCedula()){
+					//Si el nodo inmediato menor al actual está vacío se agrega allí el nuevo nodo:
+					if (currentNodo.getMenor() == null){
+						currentNodo.setMenor(nodoApicultor);
+						aux = true;
+					}
+					//Sino, se establece el nodo inmediato menor al actual como nodo actual:
+					else{
+						currentNodo = currentNodo.getMenor();
+					}
+				}
+				//Si el nuevo nodo es mayor al nodo actual:
+				else if(currentNodo.getCedula() < nodoApicultor.getCedula()){
+					//Si el nodo inmediato mayor al actual está vacío, se agrega allí el nuevo nodo:
+					if (currentNodo.getMayor() == null){
+						currentNodo.setMayor(nodoApicultor);
+						aux = true;
+					}
+					//Sino, se establece el nodo mayor inmediato al actual como nodo actual:
+					else{
+						currentNodo = currentNodo.getMayor();
+					}
+				}
+			}
 		}
 		return aux;
 	}

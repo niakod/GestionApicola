@@ -113,7 +113,13 @@ public class Sistema {
 		TipoRetorno ret = new TipoRetorno();
 		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
 		Apicultor a = new Apicultor(cedula,nombre,direccion,email,celular);
-		//TODO: agregar a al arbol de apicultores. Ver método addApicultor en la clase ArbolApicultores.
+		boolean booAux = treApicultores.addApicultor(a);
+		if (booAux == false){
+			ret.setTipoError(TipoError.ERROR_1);
+		}
+		else {
+			ret.setTipoError(TipoError.OK);
+		}
 		return ret;
 	}
 }
