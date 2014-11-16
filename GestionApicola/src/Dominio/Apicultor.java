@@ -166,5 +166,18 @@ public class Apicultor {
 	public void setMayor(Apicultor mayor) {
 		this.mayor = mayor;
 	}
-
+	/**
+	 * Constructor vacío.
+	 */
+	public Apicultor(){}
+	
+	public Apicultor(int vCedula, String vNombre, String vDireccion, String vEmail, String vCelular){
+		this.cedula = vCedula;
+		this.nombre = vNombre;
+		this.direccion = vDireccion;
+		this.email = vEmail;
+		this.celular = vCelular;
+		this.mayor = null;
+		this.menor = null;
+	}
 }

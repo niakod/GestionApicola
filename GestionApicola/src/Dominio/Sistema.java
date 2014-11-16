@@ -24,13 +24,11 @@ public class Sistema {
 	 * Arbol de apicultores del sistema.
 	 */
 	private ArbolApicultores treApicultores;
-
 	/**
 	 * Constructor de Sistema, no recibe parámetros.
 	 */
 	private Sistema() {
 	}
-
 	/**
 	 * Obtiene la instancia del sistema o crea una nueva si la actual es nula.
 	 * 
@@ -42,7 +40,6 @@ public class Sistema {
 		}
 		return instancia;
 	}
-
 	/**
 	 * Inicializa las estructuras necesarias para representar el sistema
 	 * especificado, capaz de albergar como máximo la cantidad de puntos que
@@ -78,7 +75,6 @@ public class Sistema {
 		}
 		return tr;
 	}
-
 	/**
 	 * Destruye el sistema de todos sus elementos y estructuras.
 	 * 
@@ -103,5 +99,21 @@ public class Sistema {
 			tr.setTipoError(TipoError.OK);
 		}
 		return tr;
+	}
+	/**
+	 * Registra al apicultor de cédula "cedula" en el sistema.
+	 * @param cedula Cédula del nuevo apicultor.
+	 * @param nombre Nombre del nuevo apicultor.
+	 * @param direccion Dirección del nuevo apicultor.
+	 * @param email Dirección de correo electrónico del nuevo apicultor.
+	 * @param celular Número de teléfono móvil del nuevo apicultor.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarApicultor(int cedula, String nombre, String direccion, String email, String celular){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
+		Apicultor a = new Apicultor(cedula,nombre,direccion,email,celular);
+		//TODO: agregar a al arbol de apicultores. Ver método addApicultor en la clase ArbolApicultores.
+		return ret;
 	}
 }
