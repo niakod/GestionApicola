@@ -30,6 +30,9 @@ public class ConsoleMain {
 				case 1:
 					inicializarSistema(scan);
 					break;
+				case 2:
+					destruirSistema();
+					break;
 				}
 			} while (intOptMenu != 0);
 		} catch (InputMismatchException ime) {
@@ -43,7 +46,7 @@ public class ConsoleMain {
 	private static void showMenu() {
 		System.out.println("Ingrese la opción deseada:");
 		System.out.println("1 - Inicializar el sistema.");
-
+		System.out.println("2 - Destruir sistema.");
 		System.out.println("0 - Salir de la aplicación.");
 	}
 
@@ -70,6 +73,14 @@ public class ConsoleMain {
 			}
 		} catch (InputMismatchException ime) {
 			System.out.println("Debe ingresar un número entero");
+		}
+		System.in.read();
+	}
+	private static void destruirSistema() throws IOException{
+		TipoRetorno ret = Sistema.getInstancia().destruirSistema();
+		System.out.println(ret.getTipoError().toString());
+		if(ret.getTipoError() == TipoError.ERROR_1){
+			System.out.println("No se ha inicializado el sistema, por lo que no puede destruirse.");
 		}
 		System.in.read();
 	}

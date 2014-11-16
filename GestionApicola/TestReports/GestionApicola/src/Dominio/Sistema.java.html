@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:10:00)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:37:40)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Fachada del sistema. Utiliza Singleton.
@@ -85,24 +85,24 @@
 	 * @return Resultado del método.
 	 */
 	public TipoRetorno destruirSistema() {
-<span class="nc" id="L88">		TipoRetorno tr = new TipoRetorno();</span>
+<span class="fc" id="L88">		TipoRetorno tr = new TipoRetorno();</span>
 		// Retorno por defecto:
-<span class="nc" id="L90">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">		if (getInstancia().cantPuntos == 0) {</span>
+<span class="fc" id="L90">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		if (getInstancia().cantPuntos == 0) {</span>
 			// No se ha inicializado el sistema.
-<span class="nc" id="L93">			tr.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc" id="L93">			tr.setTipoError(TipoError.ERROR_1);</span>
 		} else {
 			// Setea cantPuntos a 0:
-<span class="nc" id="L96">			getInstancia().cantPuntos = 0;</span>
+<span class="fc" id="L96">			getInstancia().cantPuntos = 0;</span>
 			// Setea los punteros para el array de puntos, lista de tramos y
 			// árbol de apicultores a null.
-<span class="nc" id="L99">			getInstancia().arrPuntos = null;</span>
-<span class="nc" id="L100">			getInstancia().lstTramos = null;</span>
-<span class="nc" id="L101">			getInstancia().treApicultores = null;</span>
+<span class="fc" id="L99">			getInstancia().arrPuntos = null;</span>
+<span class="fc" id="L100">			getInstancia().lstTramos = null;</span>
+<span class="fc" id="L101">			getInstancia().treApicultores = null;</span>
 			// El sistema se destruyo de forma correcta:
-<span class="nc" id="L103">			tr.setTipoError(TipoError.OK);</span>
+<span class="fc" id="L103">			tr.setTipoError(TipoError.OK);</span>
 		}
-<span class="nc" id="L105">		return tr;</span>
+<span class="fc" id="L105">		return tr;</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:10:00)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:37:40)</div></body></html>
