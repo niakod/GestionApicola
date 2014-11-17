@@ -41,7 +41,7 @@ public class ArbolApicultores {
 	 *            Primer apicultor del árbol.
 	 */
 	public ArbolApicultores(Apicultor primerNodo) {
-		this.primerNodo = primerNodo;
+		this.setPrimerNodo(primerNodo);
 	}
 	/**
 	 * Agrega un nuevo apicultor al árbol de apicultores.
@@ -50,7 +50,7 @@ public class ArbolApicultores {
 	 */
 	public boolean addApicultor(Apicultor nodoApicultor){
 		boolean aux = false;
-		Apicultor currentNodo = this.primerNodo;
+		Apicultor currentNodo = this.getPrimerNodo();
 		//Si el primer nodo está vacío se agrega el nuevo nodo como raíz del árbol:
 		if(this.primerNodo == null){
 			this.primerNodo = nodoApicultor;

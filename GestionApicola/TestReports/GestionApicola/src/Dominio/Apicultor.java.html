@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Apicultor.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:37:40)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Apicultor.java</span></div><h1>Apicultor.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Apicultor.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (17-nov-2014 0:25:15)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Apicultor.java</span></div><h1>Apicultor.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Apicultor contiene los datos de las personas encargadas de los apiarios, nodo
  * de ArbolApicultores.
  */
-<span class="nc" id="L7">public class Apicultor {</span>
+public class Apicultor {
 	/**
 	 * Cédula de identidad del apicultor.
 	 */
@@ -40,7 +40,7 @@
 	 * @return Cédula del apicultor.
 	 */
 	public int getCedula() {
-<span class="nc" id="L43">		return cedula;</span>
+<span class="fc" id="L43">		return cedula;</span>
 	}
 
 	/**
@@ -135,7 +135,7 @@
 	 * @return Nodo Apicultor izquierdo.
 	 */
 	public Apicultor getMenor() {
-<span class="nc" id="L138">		return menor;</span>
+<span class="fc" id="L138">		return menor;</span>
 	}
 
 	/**
@@ -145,8 +145,8 @@
 	 *            Nodo Apicultor izquierdo.
 	 */
 	public void setMenor(Apicultor menor) {
-<span class="nc" id="L148">		this.menor = menor;</span>
-<span class="nc" id="L149">	}</span>
+<span class="fc" id="L148">		this.menor = menor;</span>
+<span class="fc" id="L149">	}</span>
 
 	/**
 	 * Obtiene el nodo derecho del árbol con respecto al actual.
@@ -154,7 +154,7 @@
 	 * @return Nodo Apicultor derecho.
 	 */
 	public Apicultor getMayor() {
-<span class="nc" id="L157">		return mayor;</span>
+<span class="fc" id="L157">		return mayor;</span>
 	}
 
 	/**
@@ -164,8 +164,21 @@
 	 *            Nodo Apicultor derecho.
 	 */
 	public void setMayor(Apicultor mayor) {
-<span class="nc" id="L167">		this.mayor = mayor;</span>
-<span class="nc" id="L168">	}</span>
-
+<span class="fc" id="L167">		this.mayor = mayor;</span>
+<span class="fc" id="L168">	}</span>
+	/**
+	 * Constructor vacío.
+	 */
+<span class="nc" id="L172">	public Apicultor(){}</span>
+	
+<span class="fc" id="L174">	public Apicultor(int vCedula, String vNombre, String vDireccion, String vEmail, String vCelular){</span>
+<span class="fc" id="L175">		this.cedula = vCedula;</span>
+<span class="fc" id="L176">		this.nombre = vNombre;</span>
+<span class="fc" id="L177">		this.direccion = vDireccion;</span>
+<span class="fc" id="L178">		this.email = vEmail;</span>
+<span class="fc" id="L179">		this.celular = vCelular;</span>
+<span class="fc" id="L180">		this.mayor = null;</span>
+<span class="fc" id="L181">		this.menor = null;</span>
+<span class="fc" id="L182">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:37:40)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (17-nov-2014 0:25:15)</div></body></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:37:40)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (17-nov-2014 0:25:15)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Fachada del sistema. Utiliza Singleton.
@@ -24,25 +24,22 @@
 	 * Arbol de apicultores del sistema.
 	 */
 	private ArbolApicultores treApicultores;
-
 	/**
 	 * Constructor de Sistema, no recibe parámetros.
 	 */
-<span class="fc" id="L31">	private Sistema() {</span>
-<span class="fc" id="L32">	}</span>
-
+<span class="fc" id="L30">	private Sistema() {</span>
+<span class="fc" id="L31">	}</span>
 	/**
 	 * Obtiene la instancia del sistema o crea una nueva si la actual es nula.
 	 * 
 	 * @return Instancia del sistema.
 	 */
 	public static Sistema getInstancia() {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">		if (instancia == null) {</span>
-<span class="fc" id="L41">			instancia = new Sistema();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		if (instancia == null) {</span>
+<span class="fc" id="L39">			instancia = new Sistema();</span>
 		}
-<span class="fc" id="L43">		return instancia;</span>
+<span class="fc" id="L41">		return instancia;</span>
 	}
-
 	/**
 	 * Inicializa las estructuras necesarias para representar el sistema
 	 * especificado, capaz de albergar como máximo la cantidad de puntos que
@@ -54,55 +51,76 @@
 	 * @return Resultado del método.
 	 */
 	public TipoRetorno inicializarSistema(int vCantPuntos) {
-<span class="fc" id="L57">		TipoRetorno tr = new TipoRetorno();</span>
+<span class="fc" id="L54">		TipoRetorno tr = new TipoRetorno();</span>
 		// Retorno por defecto:
-<span class="fc" id="L59">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (getInstancia().cantPuntos != 0) {</span>
+<span class="fc" id="L56">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		if (getInstancia().cantPuntos != 0) {</span>
 			// Si el sistema ya existe debe ser destruído primero.
-<span class="fc" id="L62">			tr.setTipoError(TipoError.ERROR_2);</span>
-<span class="fc bfc" id="L63" title="All 2 branches covered.">		} else if (vCantPuntos &lt;= 0) {</span>
+<span class="fc" id="L59">			tr.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		} else if (vCantPuntos &lt;= 0) {</span>
 			// El número de puntos máximo debe ser mayor a cero.
-<span class="fc" id="L65">			tr.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc" id="L62">			tr.setTipoError(TipoError.ERROR_1);</span>
 		} else {
-<span class="fc" id="L67">			getInstancia().cantPuntos = vCantPuntos; // Asigna la cantidad de</span>
+<span class="fc" id="L64">			getInstancia().cantPuntos = vCantPuntos; // Asigna la cantidad de</span>
 														// puntos.
 			// Inicializa el array de puntos con la cantidad máxima de puntos
 			// que soportará el sistema:
-<span class="fc" id="L71">			getInstancia().arrPuntos = new Punto[vCantPuntos];</span>
+<span class="fc" id="L68">			getInstancia().arrPuntos = new Punto[vCantPuntos];</span>
 			// Inicializa la lista de tramos, con el primer elemento en null:
-<span class="fc" id="L73">			getInstancia().lstTramos = new ListaTramos(null);</span>
+<span class="fc" id="L70">			getInstancia().lstTramos = new ListaTramos(null);</span>
 			// Inicializa el árbol de apicultores, con la raíz en null:
-<span class="fc" id="L75">			getInstancia().treApicultores = new ArbolApicultores(null);</span>
-<span class="fc" id="L76">			tr.setTipoError(TipoError.OK); // El sistema se inicializa de forma</span>
+<span class="fc" id="L72">			getInstancia().treApicultores = new ArbolApicultores(null);</span>
+<span class="fc" id="L73">			tr.setTipoError(TipoError.OK); // El sistema se inicializa de forma</span>
 											// correcta.
 		}
-<span class="fc" id="L79">		return tr;</span>
+<span class="fc" id="L76">		return tr;</span>
 	}
-
 	/**
 	 * Destruye el sistema de todos sus elementos y estructuras.
 	 * 
 	 * @return Resultado del método.
 	 */
 	public TipoRetorno destruirSistema() {
-<span class="fc" id="L88">		TipoRetorno tr = new TipoRetorno();</span>
+<span class="fc" id="L84">		TipoRetorno tr = new TipoRetorno();</span>
 		// Retorno por defecto:
-<span class="fc" id="L90">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">		if (getInstancia().cantPuntos == 0) {</span>
+<span class="fc" id="L86">		tr.setTipoError(TipoError.NO_IMPLEMENTADA);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		if (getInstancia().cantPuntos == 0) {</span>
 			// No se ha inicializado el sistema.
-<span class="fc" id="L93">			tr.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc" id="L89">			tr.setTipoError(TipoError.ERROR_1);</span>
 		} else {
 			// Setea cantPuntos a 0:
-<span class="fc" id="L96">			getInstancia().cantPuntos = 0;</span>
+<span class="fc" id="L92">			getInstancia().cantPuntos = 0;</span>
 			// Setea los punteros para el array de puntos, lista de tramos y
 			// árbol de apicultores a null.
-<span class="fc" id="L99">			getInstancia().arrPuntos = null;</span>
-<span class="fc" id="L100">			getInstancia().lstTramos = null;</span>
-<span class="fc" id="L101">			getInstancia().treApicultores = null;</span>
+<span class="fc" id="L95">			getInstancia().arrPuntos = null;</span>
+<span class="fc" id="L96">			getInstancia().lstTramos = null;</span>
+<span class="fc" id="L97">			getInstancia().treApicultores = null;</span>
 			// El sistema se destruyo de forma correcta:
-<span class="fc" id="L103">			tr.setTipoError(TipoError.OK);</span>
+<span class="fc" id="L99">			tr.setTipoError(TipoError.OK);</span>
 		}
-<span class="fc" id="L105">		return tr;</span>
+<span class="fc" id="L101">		return tr;</span>
+	}
+	/**
+	 * Registra al apicultor de cédula &quot;cedula&quot; en el sistema.
+	 * @param cedula Cédula del nuevo apicultor.
+	 * @param nombre Nombre del nuevo apicultor.
+	 * @param direccion Dirección del nuevo apicultor.
+	 * @param email Dirección de correo electrónico del nuevo apicultor.
+	 * @param celular Número de teléfono móvil del nuevo apicultor.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarApicultor(int cedula, String nombre, String direccion, String email, String celular){
+<span class="fc" id="L113">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L114">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
+<span class="fc" id="L115">		Apicultor a = new Apicultor(cedula,nombre,direccion,email,celular);</span>
+<span class="fc" id="L116">		boolean booAux = treApicultores.addApicultor(a);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">		if (booAux == false){</span>
+<span class="fc" id="L118">			ret.setTipoError(TipoError.ERROR_1);</span>
+		}
+		else {
+<span class="fc" id="L121">			ret.setTipoError(TipoError.OK);</span>
+		}
+<span class="fc" id="L123">		return ret;</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:37:40)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (17-nov-2014 0:25:15)</div></body></html>

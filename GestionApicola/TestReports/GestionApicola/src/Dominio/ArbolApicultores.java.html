@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ArbolApicultores.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">InicializarSistema (15-nov-2014 22:37:40)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">ArbolApicultores.java</span></div><h1>ArbolApicultores.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ArbolApicultores.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (17-nov-2014 0:25:15)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">ArbolApicultores.java</span></div><h1>ArbolApicultores.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Estructura para el árbol de Apicultores.
@@ -15,7 +15,7 @@ public class ArbolApicultores {
 	 * @return Primer apicultor del árbol.
 	 */
 	public Apicultor getPrimerNodo() {
-<span class="nc" id="L18">		return primerNodo;</span>
+<span class="fc" id="L18">		return primerNodo;</span>
 	}
 
 	/**
@@ -25,8 +25,8 @@ public class ArbolApicultores {
 	 *            Primer apicultor del árbol.
 	 */
 	public void setPrimerNodo(Apicultor primerNodo) {
-<span class="nc" id="L28">		this.primerNodo = primerNodo;</span>
-<span class="nc" id="L29">	}</span>
+<span class="fc" id="L28">		this.primerNodo = primerNodo;</span>
+<span class="fc" id="L29">	}</span>
 
 	/**
 	 * Constructor vacío.
@@ -41,7 +41,88 @@ public class ArbolApicultores {
 	 *            Primer apicultor del árbol.
 	 */
 <span class="fc" id="L43">	public ArbolApicultores(Apicultor primerNodo) {</span>
-<span class="fc" id="L44">		this.primerNodo = primerNodo;</span>
+<span class="fc" id="L44">		this.setPrimerNodo(primerNodo);</span>
 <span class="fc" id="L45">	}</span>
+	/**
+	 * Agrega un nuevo apicultor al árbol de apicultores.
+	 * @param nodoApicultor Nuevo Apicultor.
+	 * @return true si se agrego, false si ya existía un apicultor con la cédula ingresada y no pudo ser agregado.
+	 */
+	public boolean addApicultor(Apicultor nodoApicultor){
+<span class="fc" id="L52">		boolean aux = false;</span>
+<span class="fc" id="L53">		Apicultor currentNodo = this.getPrimerNodo();</span>
+		//Si el primer nodo está vacío se agrega el nuevo nodo como raíz del árbol:
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		if(this.primerNodo == null){</span>
+<span class="fc" id="L56">			this.primerNodo = nodoApicultor;</span>
+<span class="fc" id="L57">			aux = true;</span>
+		}
+		//Sino, si no existe un apicultor con la cédula del nuevo nodo:
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		else if(!existeApicultor(nodoApicultor,this.primerNodo)){</span>
+			//Mientras no se agregue el nuevo nodo:
+<span class="fc bfc" id="L62" title="All 2 branches covered.">			while (aux == false){</span>
+				//Si el nuevo nodo es menor al nodo actual:
+<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (currentNodo.getCedula() &gt; nodoApicultor.getCedula()){</span>
+					//Si el nodo inmediato menor al actual está vacío se agrega allí el nuevo nodo:
+<span class="fc bfc" id="L66" title="All 2 branches covered.">					if (currentNodo.getMenor() == null){</span>
+<span class="fc" id="L67">						currentNodo.setMenor(nodoApicultor);</span>
+<span class="fc" id="L68">						aux = true;</span>
+					}
+					//Sino, se establece el nodo inmediato menor al actual como nodo actual:
+					else{
+<span class="fc" id="L72">						currentNodo = currentNodo.getMenor();</span>
+					}
+				}
+				//Si el nuevo nodo es mayor al nodo actual:
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">				else if(currentNodo.getCedula() &lt; nodoApicultor.getCedula()){</span>
+					//Si el nodo inmediato mayor al actual está vacío, se agrega allí el nuevo nodo:
+<span class="fc bfc" id="L78" title="All 2 branches covered.">					if (currentNodo.getMayor() == null){</span>
+<span class="fc" id="L79">						currentNodo.setMayor(nodoApicultor);</span>
+<span class="fc" id="L80">						aux = true;</span>
+					}
+					//Sino, se establece el nodo mayor inmediato al actual como nodo actual:
+					else{
+<span class="fc" id="L84">						currentNodo = currentNodo.getMayor();</span>
+					}
+				}
+			}
+		}
+<span class="fc" id="L89">		return aux;</span>
+	}
+	/**
+	 * Recorre el arbol de apicultores usando recursividad.
+	 * Compara la cédula del apicultor buscado con la del nodo actual.
+	 * @param oApicultor Apicultor buscado.
+	 * @param oRaiz Nodo actual.
+	 * @return true si existe el apicultor buscado, false si no existe.
+	 */
+	public boolean existeApicultor(Apicultor oApicultor, Apicultor oRaiz){
+<span class="fc" id="L99">		boolean aux = false;</span>
+		//Caso base: encuentra un apicultor con la misma cédula.
+<span class="fc bfc" id="L101" title="All 2 branches covered.">		if (oRaiz.getCedula() == oApicultor.getCedula()){</span>
+<span class="fc" id="L102">			aux = true;</span>
+		}
+		//Si el nodo derecho es nulo:
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		else if(oRaiz.getMayor() == null){</span>
+			//Si el nodo izquierdo es distinto de nulo:
+<span class="fc bfc" id="L107" title="All 2 branches covered.">			if(oRaiz.getMenor() != null){</span>
+				//Paso recursivo con el nodo de la izquierda unicamente:
+<span class="fc" id="L109">				existeApicultor(oApicultor,oRaiz.getMenor());</span>
+			}
+		}
+		//Si el nodo izquierdo es nulo:
+<span class="fc bfc" id="L113" title="All 2 branches covered.">		else if(oRaiz.getMenor() == null){</span>
+			//Si el nodo derecho es distinto de nulo:
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">			if(oRaiz.getMayor() != null){</span>
+				//Paso recursivo con el nodo de la derecha unicamente:
+<span class="fc" id="L117">				existeApicultor(oApicultor,oRaiz.getMayor());</span>
+			}
+		}
+		else{
+			//Si ninguno de los dos nodos son nulos, paso recursivo con ambos:
+<span class="fc" id="L122">			existeApicultor(oApicultor,oRaiz.getMenor());</span>
+<span class="fc" id="L123">			existeApicultor(oApicultor,oRaiz.getMayor());</span>
+		}
+<span class="fc" id="L125">		return aux;</span>
+	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>InicializarSistema (15-nov-2014 22:37:40)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (17-nov-2014 0:25:15)</div></body></html>
