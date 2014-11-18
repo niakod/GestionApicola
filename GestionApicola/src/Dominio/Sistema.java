@@ -122,4 +122,40 @@ public class Sistema {
 		}
 		return ret;
 	}
+	/**
+	 * Registra la ciudad de nombre nombre y coordenadas coordX, coordY en el sistema.
+	 * @param nombre Nombre de la ciudad.
+	 * @param coordX Coordenada en el eje x para la localización de la ciudad.
+	 * @param coordY Coordenada en el eje y para la localización de la ciudad.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarCiudad(String nombre, double coordX, double coordY){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
+		Ciudad c = new Ciudad(nombre, coordX, coordY);
+		if(!existePunto(c)){
+			boolean aux = false;
+			int i = 0;
+			while (aux == false && i < cantPuntos){
+				//TODO:agregar ciudad.
+			}
+		}
+		return ret;
+	}
+	/**
+	 * Chequea si existe un punto de nombre p.nombre en el sistema.
+	 * @param p Nuevo punto.
+	 * @return false si no existe, true si existe.
+	 */
+	public boolean existePunto(Punto p){
+		boolean aux = false;
+		int i = 0;
+		while (i < this.cantPuntos && aux == false){
+			if(arrPuntos[i].getNombre().equals(p.getNombre())){
+				aux = true;
+			}
+			i++;
+		}
+		return aux;
+	}
 }

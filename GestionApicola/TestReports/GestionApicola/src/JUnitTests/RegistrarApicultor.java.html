@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RegistrarApicultor.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (17-nov-2014 0:25:15)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">RegistrarApicultor.java</span></div><h1>RegistrarApicultor.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L10">public class RegistrarApicultor {</span>
+
+	@Test
+	public void testRegistrarApicultor() {
+<span class="fc" id="L14">		Sistema.getInstancia().inicializarSistema(20); //Del test DestruirSistema, el sistema no ha sido inicializado.</span>
+<span class="fc" id="L15">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L16">		ret = Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);</span>
+<span class="fc" id="L17">		assertEquals(&quot;Primer registro de apicultor&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L18">		ret = Sistema.getInstancia().registrarApicultor(12223334, &quot;nombre&quot;, &quot;direccion&quot;, &quot;email&quot;, &quot;celular&quot;);</span>
+<span class="fc" id="L19">		assertEquals(&quot;No se puede registrar un apicultor con una cedula ya registrada en el sistema&quot;,</span>
+<span class="fc" id="L20">				TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L21">		ret = Sistema.getInstancia().registrarApicultor(10001119, &quot;Little Apikultor&quot;, &quot;Las flores esq. Las acacias&quot;, &quot;little@apicultores.net&quot;, &quot;094111222&quot;);</span>
+<span class="fc" id="L22">		assertEquals(&quot;Registro de un apicultor con cédula menor al primero&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L23">		ret = Sistema.getInstancia().registrarApicultor(19992229, &quot;Big Apikultor&quot;, &quot;Madre selva esq. Avisapas&quot;, &quot;big@apicultores.net&quot;, &quot;091888999&quot;);</span>
+<span class="fc" id="L24">		assertEquals(&quot;Registro de un apicultor con cédula mayor al primero&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L25">		ret = Sistema.getInstancia().registrarApicultor(11112222, &quot;Señor Apikultor&quot;, &quot;Jasmín esq. Orquídeas&quot;, &quot;señor@apicultores.net&quot;, &quot;093123123&quot;);</span>
+<span class="fc" id="L26">		assertEquals(&quot;Registro de un apicultor para raiz.menor.mayor&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L27">		ret = Sistema.getInstancia().registrarApicultor(10001000, &quot;Señora Apikultora&quot;, &quot;Jasmín esq. Orquídeas&quot;, &quot;señora@apicultores.net&quot;, &quot;093123456&quot;);</span>
+<span class="fc" id="L28">		assertEquals(&quot;Registro de un apicultor para raiz.menor.menor&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L29">		ret = Sistema.getInstancia().registrarApicultor(21112111, &quot;Melina Miel&quot;, &quot;Dr.Edye y Rincón&quot;, &quot;melimiel@apicultores.net&quot;, &quot;098998998&quot;);</span>
+<span class="fc" id="L30">		assertEquals(&quot;Registro de un apicultor para raiz.mayor.mayor&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L31">		ret = Sistema.getInstancia().registrarApicultor(29001234, &quot;Luis Panales&quot;, &quot;Su casa&quot;, &quot;panales@gmail.com&quot;, &quot;096999888&quot;);</span>
+<span class="fc" id="L32">		assertEquals(&quot;Registro de un apicultor para raiz.mayor.mayor.menor&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L33">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (17-nov-2014 0:25:15)</div></body></html>

@@ -22,6 +22,12 @@ public class ConsoleMain {
 	 */
 	public static void main(String[] args) throws IOException {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("          __");
+		System.out.println("         // \\                            _ _  __");
+		System.out.println("         \\\\_/ //                        ( | )/_/");
+		System.out.println("'-.._.. -(||)(')   GESTIÓN APICOLA   __( >O< )");
+		System.out.println("         ´´´                         \\_\\( | )");
+		System.out.println("                                         ¯ ¯");
 		try {
 			do {
 				showMenu(); // Muestra el menú de opciones.
