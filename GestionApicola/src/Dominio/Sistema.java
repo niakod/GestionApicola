@@ -24,11 +24,13 @@ public class Sistema {
 	 * Arbol de apicultores del sistema.
 	 */
 	private ArbolApicultores treApicultores;
+
 	/**
 	 * Constructor de Sistema, no recibe parámetros.
 	 */
 	private Sistema() {
 	}
+
 	/**
 	 * Obtiene la instancia del sistema o crea una nueva si la actual es nula.
 	 * 
@@ -40,13 +42,14 @@ public class Sistema {
 		}
 		return instancia;
 	}
+
 	/**
 	 * Inicializa las estructuras necesarias para representar el sistema
 	 * especificado, capaz de albergar como máximo la cantidad de puntos que
 	 * recibe como parámetros en el mapa. Los puntos del mapa serán las
 	 * ciudades, puntos de extracción, o apiarios.
 	 * 
-	 * @param cantPuntos
+	 * @param vCantPuntos
 	 *            Cantidad máxima de puntos soportados por el sistema a crear.
 	 * @return Resultado del método.
 	 */
@@ -75,6 +78,7 @@ public class Sistema {
 		}
 		return tr;
 	}
+
 	/**
 	 * Destruye el sistema de todos sus elementos y estructuras.
 	 * 
@@ -100,59 +104,92 @@ public class Sistema {
 		}
 		return tr;
 	}
+
 	/**
 	 * Registra al apicultor de cédula "cedula" en el sistema.
-	 * @param cedula Cédula del nuevo apicultor.
-	 * @param nombre Nombre del nuevo apicultor.
-	 * @param direccion Dirección del nuevo apicultor.
-	 * @param email Dirección de correo electrónico del nuevo apicultor.
-	 * @param celular Número de teléfono móvil del nuevo apicultor.
+	 * 
+	 * @param cedula
+	 *            Cédula del nuevo apicultor.
+	 * @param nombre
+	 *            Nombre del nuevo apicultor.
+	 * @param direccion
+	 *            Dirección del nuevo apicultor.
+	 * @param email
+	 *            Dirección de correo electrónico del nuevo apicultor.
+	 * @param celular
+	 *            Número de teléfono móvil del nuevo apicultor.
 	 * @return Resultado del método.
 	 */
-	public TipoRetorno registrarApicultor(int cedula, String nombre, String direccion, String email, String celular){
+	public TipoRetorno registrarApicultor(int cedula, String nombre,
+			String direccion, String email, String celular) {
 		TipoRetorno ret = new TipoRetorno();
-		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
-		Apicultor a = new Apicultor(cedula,nombre,direccion,email,celular);
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.
+		Apicultor a = new Apicultor(cedula, nombre, direccion, email, celular);
 		boolean booAux = treApicultores.addApicultor(a);
-		if (booAux == false){
+		if (booAux == false) {
 			ret.setTipoError(TipoError.ERROR_1);
-		}
-		else {
+		} else {
 			ret.setTipoError(TipoError.OK);
 		}
 		return ret;
 	}
+
 	/**
-	 * Registra la ciudad de nombre nombre y coordenadas coordX, coordY en el sistema.
-	 * @param nombre Nombre de la ciudad.
-	 * @param coordX Coordenada en el eje x para la localización de la ciudad.
-	 * @param coordY Coordenada en el eje y para la localización de la ciudad.
+	 * Registra la ciudad de nombre nombre y coordenadas coordX, coordY en el
+	 * sistema.
+	 * 
+	 * @param nombre
+	 *            Nombre de la ciudad.
+	 * @param coordX
+	 *            Coordenada en el eje x para la localización de la ciudad.
+	 * @param coordY
+	 *            Coordenada en el eje y para la localización de la ciudad.
 	 * @return Resultado del método.
 	 */
-	public TipoRetorno registrarCiudad(String nombre, double coordX, double coordY){
+	public TipoRetorno registrarCiudad(String nombre, double coordX,
+			double coordY) {
 		TipoRetorno ret = new TipoRetorno();
-		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.
 		Ciudad c = new Ciudad(nombre, coordX, coordY);
-		if(!existePunto(c)){
+		if (!existePunto(c)) {
 			boolean aux = false;
 			int i = 0;
-			while (aux == false && i < cantPuntos){
-				//TODO:agregar ciudad.
+			while (aux == false && i < cantPuntos) {
+				if (arrPuntos[i] == null) {
+					arrPuntos[i] = c;
+					aux = true;
+					ret.setTipoError(TipoError.OK);
+				} else if (arrPuntos[i].getCoordX() == c.getCoordX() && arrPuntos[i].getCoordY() == c.getCoordY()) {
+					ret.setTipoError(TipoError.ERROR_2);
+					aux = true;
+				}
+				i++;
 			}
+			if (aux == false) {
+				ret.setTipoError(TipoError.ERROR_1);
+			}
+		}
+		else{
+			ret.setTipoError(TipoError.ERROR_3);
 		}
 		return ret;
 	}
+
 	/**
 	 * Chequea si existe un punto de nombre p.nombre en el sistema.
-	 * @param p Nuevo punto.
+	 * 
+	 * @param p
+	 *            Nuevo punto.
 	 * @return false si no existe, true si existe.
 	 */
-	public boolean existePunto(Punto p){
+	public boolean existePunto(Punto p) {
 		boolean aux = false;
 		int i = 0;
-		while (i < this.cantPuntos && aux == false){
-			if(arrPuntos[i].getNombre().equals(p.getNombre())){
-				aux = true;
+		while (i < this.cantPuntos && aux == false) {
+			if (arrPuntos[i] != null) {
+				if (arrPuntos[i].getNombre().equals(p.getNombre())) {
+					aux = true;
+				}
 			}
 			i++;
 		}
