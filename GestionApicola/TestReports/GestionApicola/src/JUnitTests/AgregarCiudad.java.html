@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>AgregarCiudad.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (19-nov-2014 3:20:32)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">AgregarCiudad.java</span></div><h1>AgregarCiudad.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class AgregarCiudad {</span>
+
+	@Test
+	public void testAgregarCiudad() {
+		//El sistema esta creado para 20 puntos desde RegistrarApicultor.
+		//Lo destruimos y creamos uno que soporte solo dos para esta prueba:
+<span class="fc" id="L17">		Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L18">		Sistema.getInstancia().inicializarSistema(3);</span>
+<span class="fc" id="L19">		TipoRetorno ret = Sistema.getInstancia().registrarCiudad(&quot;Maldonado&quot;, -34.908807, -54.958212);</span>
+<span class="fc" id="L20">		assertEquals(&quot;Insertar primer ciudad&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L21">		ret = Sistema.getInstancia().registrarCiudad(&quot;Punta Ballena&quot;, -34.888869, -55.040497);</span>
+<span class="fc" id="L22">		assertEquals(&quot;Insertar sengunda ciudad&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L23">		ret = Sistema.getInstancia().registrarCiudad(&quot;Otra vez Punta Ballena&quot;, -34.888869, -55.040497);</span>
+<span class="fc" id="L24">		assertEquals(&quot;Ingresar una ciudad con las coordenadas de una ciudad ya registrada en el sistema&quot;,</span>
+<span class="fc" id="L25">				TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L26">		ret = Sistema.getInstancia().registrarCiudad(&quot;Maldonado&quot;, -32.908807, -52.958212);</span>
+<span class="fc" id="L27">		assertEquals(&quot;Ingresar una ciudad cuando ya existe un punto con el mismo nombre&quot;,</span>
+<span class="fc" id="L28">				TipoError.ERROR_3, ret.getTipoError());</span>
+<span class="fc" id="L29">		ret = Sistema.getInstancia().registrarCiudad(&quot;Punta del Este&quot;, -34.964345, -54.951200);</span>
+<span class="fc" id="L30">		assertEquals(&quot;Ingresar una tercer ciudad&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L31">		ret = Sistema.getInstancia().registrarCiudad(&quot;San Carlos&quot;, -34.796507, -54.926836);</span>
+<span class="fc" id="L32">		assertEquals(&quot;Ingresar una ciudad cuando ya se han registrado todos los puntos posibles&quot;,</span>
+<span class="fc" id="L33">				TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L34">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (19-nov-2014 3:20:32)</div></body></html>
