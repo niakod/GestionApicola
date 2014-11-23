@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RegistrarCentro.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 18:18:58)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">RegistrarCentro.java</span></div><h1>RegistrarCentro.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class RegistrarCentro {</span>
+
+	@Test
+	public void test() {
+		//Se elimina (si existía) y se vuelve a crear un sistema con capacidad de 3 puntos.
+<span class="fc" id="L16">		Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">		Sistema.getInstancia().inicializarSistema(3);</span>
+<span class="fc" id="L18">		TipoRetorno ret = Sistema.getInstancia().registrarCentro(&quot;Maldonado Extracciones&quot;, -34.908827, -54.958256, 220);</span>
+<span class="fc" id="L19">		assertEquals(&quot;Insertar primer centro&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L20">		ret = Sistema.getInstancia().registrarCentro(&quot;Punta Ballena Extracciones&quot;, -34.888877, -55.040423, 350);</span>
+<span class="fc" id="L21">		assertEquals(&quot;Insertar sengundo centro&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L22">		ret = Sistema.getInstancia().registrarCentro(&quot;Otra vez&quot;, -34.908827, -54.958256, 120);</span>
+<span class="fc" id="L23">		assertEquals(&quot;Ingresar una ciudad con las coordenadas de una ciudad ya registrada en el sistema&quot;,</span>
+<span class="fc" id="L24">				TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L25">		ret = Sistema.getInstancia().registrarCentro(&quot;Maldonado Extracciones&quot;, -32.908807, -52.958212, 530);</span>
+<span class="fc" id="L26">		assertEquals(&quot;Ingresar un centro cuando ya existe un punto con el mismo nombre&quot;,</span>
+<span class="fc" id="L27">				TipoError.ERROR_3, ret.getTipoError());</span>
+<span class="fc" id="L28">		ret = Sistema.getInstancia().registrarCentro(&quot;Punta del Este Extracciones&quot;, -34.964245, -54.951100, 358);</span>
+<span class="fc" id="L29">		assertEquals(&quot;Ingresar un tercer centro&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L30">		ret = Sistema.getInstancia().registrarCentro(&quot;San Carlos Extracciones&quot;, -34.796557, -54.926876, 180);</span>
+<span class="fc" id="L31">		assertEquals(&quot;Ingresar un centro cuando ya se han registrado todos los puntos posibles&quot;,</span>
+<span class="fc" id="L32">				TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L33">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 18:18:58)</div></body></html>
