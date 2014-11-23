@@ -13,7 +13,7 @@ public class AgregarCiudad {
 	@Test
 	public void testAgregarCiudad() {
 		//El sistema esta creado para 20 puntos desde RegistrarApicultor.
-		//Lo destruimos y creamos uno que soporte solo dos para esta prueba:
+		//Lo destruimos y creamos uno que soporte solo tres para esta prueba:
 		Sistema.getInstancia().destruirSistema();
 		Sistema.getInstancia().inicializarSistema(3);
 		TipoRetorno ret = Sistema.getInstancia().registrarCiudad("Maldonado", -34.908807, -54.958212);

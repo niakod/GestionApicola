@@ -241,4 +241,56 @@ public class Sistema {
 		}
 		return ret;
 	}
+	/**
+	 * Registra un centro de extracción de nombre "nombre" en el sistema, con una capacidad de extracción
+	 * de "capacidad" litros de miel por mes.
+	 * @param nombre Nombre del centro de extracción.
+	 * @param coordX Coordenada de ubicación del centro en el eje X.
+	 * @param coordY Coordenada de localización del centro en el eje Y.
+	 * @param capacidad Capacidad en litros de miel por mes que puede ser extraíada en este centro.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarCentro(String nombre, double coordX, double coordY, int capacidad){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
+		CentroDeExtraccion c = new CentroDeExtraccion(nombre, coordX, coordY, capacidad);
+		if (!existePunto(c)) {
+			boolean aux = false;
+			int i = 0;
+			while (aux == false && i < cantPuntos) {
+				if (arrPuntos[i] == null) {
+					arrPuntos[i] = c;
+					aux = true;
+					ret.setTipoError(TipoError.OK);
+				} else if (arrPuntos[i].getCoordX() == c.getCoordX() && arrPuntos[i].getCoordY() == c.getCoordY()) {
+					ret.setTipoError(TipoError.ERROR_2);
+					aux = true;
+				}
+				i++;
+			}
+			if (aux == false) {
+				ret.setTipoError(TipoError.ERROR_1);
+			}
+		}
+		else{
+			ret.setTipoError(TipoError.ERROR_3);
+		}
+		return ret;
+	}
+	
+	/**
+	 * Registra un tramo en el sistema desde la coordenada inicio (coordXi,coordYi) hasta la coordenanda
+	 * destino (coordXf,coordYf) de peso "peso".
+	 * @param coordXi Coordenada para el eje X inicial.
+	 * @param coordYi Coordenada para el eje Y inicial.
+	 * @param coordXf Coordenada para el eje X final.
+	 * @param coordYf Coordenada para el eje Y final.
+	 * @param peso Kilómetros del tramo.
+	 * @return
+	 */
+	public TipoRetorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int peso){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto.
+		return ret;
+	}
 }

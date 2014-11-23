@@ -218,4 +218,30 @@ public class ConsoleMain {
 			System.out.println("Las coordenadas, la cédula del apicultor y la capacidad deben estar en un formato númerico.");
 		}
 	}
+	private static void registrarCentro(Scanner s) throws IOException {
+		try {
+			System.out.println("Ingrese el nombre del centro:");
+			String nombre = s.nextLine();
+			System.out.println("Ingrese la coordenada para el eje x:");
+			double x = s.nextDouble();
+			System.out.println("Ingrese la coordenada para el eje y;");
+			double y = s.nextDouble();
+			System.out.println("Ingrese la capacidad del centro en litros de miel por mes:");
+			int capacidad = s.nextInt();
+			TipoRetorno ret = Sistema.getInstancia().registrarCentro(nombre, x, y, capacidad);
+			System.out.println(ret.getTipoError().toString());
+			if(ret.getTipoError() == TipoError.ERROR_1){
+				System.out.println("No se pueden registrar más puntos en el sistema.");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_2){
+				System.out.println("Ya existe un punto en el sistema en las coordenadas" +y+","+x+".");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_3){
+				System.out.println("Ya existe un punto en el sistema con el nombre"+nombre+".");
+			}
+			System.in.read();
+		} catch (InputMismatchException ime) {
+			System.out.println("Las coordenadas deben estar en un formato númerico.");
+		}
+	}
 }

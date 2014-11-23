@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 17:40:13)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 18:18:58)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Fachada del sistema. Utiliza Singleton.
@@ -241,5 +241,57 @@
 		}
 <span class="fc" id="L242">		return ret;</span>
 	}
+	/**
+	 * Registra un centro de extracción de nombre &quot;nombre&quot; en el sistema, con una capacidad de extracción
+	 * de &quot;capacidad&quot; litros de miel por mes.
+	 * @param nombre Nombre del centro de extracción.
+	 * @param coordX Coordenada de ubicación del centro en el eje X.
+	 * @param coordY Coordenada de localización del centro en el eje Y.
+	 * @param capacidad Capacidad en litros de miel por mes que puede ser extraíada en este centro.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarCentro(String nombre, double coordX, double coordY, int capacidad){
+<span class="fc" id="L254">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L255">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
+<span class="fc" id="L256">		CentroDeExtraccion c = new CentroDeExtraccion(nombre, coordX, coordY, capacidad);</span>
+<span class="fc bfc" id="L257" title="All 2 branches covered.">		if (!existePunto(c)) {</span>
+<span class="fc" id="L258">			boolean aux = false;</span>
+<span class="fc" id="L259">			int i = 0;</span>
+<span class="fc bfc" id="L260" title="All 4 branches covered.">			while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
+<span class="fc bfc" id="L261" title="All 2 branches covered.">				if (arrPuntos[i] == null) {</span>
+<span class="fc" id="L262">					arrPuntos[i] = c;</span>
+<span class="fc" id="L263">					aux = true;</span>
+<span class="fc" id="L264">					ret.setTipoError(TipoError.OK);</span>
+<span class="pc bpc" id="L265" title="1 of 4 branches missed.">				} else if (arrPuntos[i].getCoordX() == c.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == c.getCoordY()) {</span>
+<span class="fc" id="L266">					ret.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc" id="L267">					aux = true;</span>
+				}
+<span class="fc" id="L269">				i++;</span>
+			}
+<span class="fc bfc" id="L271" title="All 2 branches covered.">			if (aux == false) {</span>
+<span class="fc" id="L272">				ret.setTipoError(TipoError.ERROR_1);</span>
+			}
+		}
+		else{
+<span class="fc" id="L276">			ret.setTipoError(TipoError.ERROR_3);</span>
+		}
+<span class="fc" id="L278">		return ret;</span>
+	}
+	
+	/**
+	 * Registra un tramo en el sistema desde la coordenada inicio (coordXi,coordYi) hasta la coordenanda
+	 * destino (coordXf,coordYf) de peso &quot;peso&quot;.
+	 * @param coordXi Coordenada para el eje X inicial.
+	 * @param coordYi Coordenada para el eje Y inicial.
+	 * @param coordXf Coordenada para el eje X final.
+	 * @param coordYf Coordenada para el eje Y final.
+	 * @param peso Kilómetros del tramo.
+	 * @return
+	 */
+	public TipoRetorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int peso){
+<span class="nc" id="L292">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="nc" id="L293">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto.</span>
+<span class="nc" id="L294">		return ret;</span>
+	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 17:40:13)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 18:18:58)</div></body></html>
