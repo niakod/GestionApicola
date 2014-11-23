@@ -49,6 +49,10 @@ public class ConsoleMain {
 				case 5:
 					registrarApiario(scan);
 					break;
+				case 6:
+					registrarCentro(scan);
+					break;
+				case 7: registrarTramo(scan);
 				}
 			} while (intOptMenu != 0);
 		} catch (InputMismatchException ime) {
@@ -66,6 +70,8 @@ public class ConsoleMain {
 		System.out.println("3 - Registrar Apicultor.");
 		System.out.println("4 - Registrar Ciudad.");
 		System.out.println("5 - Registrar Apiario");
+		System.out.println("6 - Registrar Centro");
+		System.out.println("7 - Registrar Tramo");
 		System.out.println("0 - Salir de la aplicación.");
 	}
 
@@ -238,6 +244,39 @@ public class ConsoleMain {
 			}
 			else if(ret.getTipoError() == TipoError.ERROR_3){
 				System.out.println("Ya existe un punto en el sistema con el nombre"+nombre+".");
+			}
+			System.in.read();
+		} catch (InputMismatchException ime) {
+			System.out.println("Las coordenadas deben estar en un formato númerico.");
+		}
+	}
+	/**
+	 * Registra un nuevo tramo.
+	 * @param s Scanner para leer los datos ingresados por el usuario.
+	 * @throws IOException
+	 */
+	private static void registrarTramo(Scanner s) throws IOException{
+		try{
+			System.out.println("Ingrese la cordenada x del primer punto:");
+			double xi = s.nextDouble();
+			System.out.println("Ingrese la cordenada y del primer punto:");
+			double yi = s.nextDouble();
+			System.out.println("Ingrese la cordenada x del segundo punto:");
+			double xf = s.nextDouble();
+			System.out.println("Ingrese la cordenada y del segundo punto:");
+			double yf = s.nextDouble();
+			System.out.println("Ingrese el peso del tramo:");
+			int peso = s.nextInt();
+			TipoRetorno ret = Sistema.getInstancia().registrarTramo(xi, yi, xf, yf, peso);
+			System.out.println(ret.getTipoError().toString());
+			if(ret.getTipoError() == TipoError.ERROR_1){
+				System.out.println("El peso debe ser mayor que cero.");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_2){
+				System.out.println("Coordenadas no válidas.");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_3){
+				System.out.println("El tramo ya existe");
 			}
 			System.in.read();
 		} catch (InputMismatchException ime) {
