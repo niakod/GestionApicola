@@ -159,7 +159,8 @@ public class Sistema {
 					arrPuntos[i] = c;
 					aux = true;
 					ret.setTipoError(TipoError.OK);
-				} else if (arrPuntos[i].getCoordX() == c.getCoordX() && arrPuntos[i].getCoordY() == c.getCoordY()) {
+				} else if (arrPuntos[i].getCoordX() == c.getCoordX()
+						&& arrPuntos[i].getCoordY() == c.getCoordY()) {
 					ret.setTipoError(TipoError.ERROR_2);
 					aux = true;
 				}
@@ -168,8 +169,7 @@ public class Sistema {
 			if (aux == false) {
 				ret.setTipoError(TipoError.ERROR_1);
 			}
-		}
-		else{
+		} else {
 			ret.setTipoError(TipoError.ERROR_3);
 		}
 		return ret;
@@ -194,6 +194,157 @@ public class Sistema {
 			i++;
 		}
 		return aux;
+	}	
+
+	/**
+	 * 
+	 * @param coordX 
+	 * 		Coordenada en el eje x para la localización de la ciudad.
+	 * @param coordY
+	 * 		Coordenada en el eje y para la localización de la ciudad.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno listadoDeApiariosEnCiudad(Double coordX, Double coordY) {
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.
+		
+		//Se crea una instancia de punto con las coordenadas recibidas como parametro.
+		Punto p = new Punto();
+		p.setCoordX(coordX);
+		p.setCoordY(coordY);
+		//Se crea una lista auxiliar de tramos, en la que se guardan los que tengan un peso menor a 20.
+		ListaTramos lstAux = new ListaTramos();
+		Tramo t = lstTramos.getPrimerTramo();
+		if (t != null && t.getPeso() <= 20) {
+			lstAux.agregarTramo(t);
+		}
+		while(t.getSiguiente() != null){
+			t = t.getSiguiente();
+			if(t.getPeso() <= 20){
+				lstAux.agregarTramo(t);
+			}
+		}
+		String strApiarios = "";
+		strApiarios = listarApiarios(lstAux, strApiarios, 0, p);
+		
+		ret.setTipoError(TipoError.OK);
+		ret.setValorString(strApiarios);
+		
+		return ret;
+		
+	}
+	
+	/**
+	 * Devuelve una lista de coordenadas X e Y de apiarios que sean alcanzables recorriendo no mas de 20 Kil�metros desde el
+	 * punto que define la ciudad.
+	 * 
+	 * @param lst 
+	 * 			Una copia de lstTramos.
+	 * @param lista 
+	 * 			Variable String que acumula las coordenadas de los apiarios encontrados.
+	 * @param distanciaParcial 
+	 * 			Siempre vale 0 si se parte del punto que define la ciudad; en caso que se este evaluando un tramo que 
+	 * enlazado al anterior pueda llevar a un apiario, el valor de este par�metro sera el del peso del tramo anterior.
+	 *
+	 * @param punto
+	 * 		punto de origen del tramo que se evalua.
+	 * @return Resultado del m�todo.
+	 */
+	private String listarApiarios(ListaTramos lst, String lista, int distanciaParcial,
+			Punto punto) {
+		Tramo t = lst.getPrimerTramo();
+		if (t.getPeso() + distanciaParcial <= 20) {
+			if (t.getPuntoI().getCoordX() == punto.getCoordX()
+					&& t.getPuntoI().getCoordY() == punto.getCoordY()) {
+				if (t.getPuntoF().getClass().getName()
+						.equals("Dominio.Apiario")) {
+					lista += t.getPuntoF().getCoordX() + ";"
+							+ t.getPuntoF().getCoordY() + "|";
+				}
+				if (t.getSiguiente() != null) {
+					Tramo tAux = t.getSiguiente();
+					lst.eliminarTramo(t);
+					lista = listarApiarios(lst, lista,
+							tAux.getPeso(), tAux.getPuntoF());
+				}
+			} else if (t.getPuntoF().getCoordX() == punto.getCoordX()
+					&& t.getPuntoF().getCoordY() == punto.getCoordY()) {
+				if (t.getPuntoI().getClass().getName()
+						.equals("Dominio.Apiario")) {
+					lista += t.getPuntoI().getCoordX() + ";"
+							+ t.getPuntoI().getCoordY() + "|";
+
+				}
+				if (t.getSiguiente() != null) {
+					Tramo tAux = t.getSiguiente();
+					lst.eliminarTramo(t);
+					lista = listarApiarios(lst, lista,
+							tAux.getPeso(), tAux.getPuntoI());
+				}
+
+			}
+		}
+		if(t.getSiguiente() != null){
+			lst.cambiarOrden();
+			lista = listarApiarios(lst, lista, distanciaParcial, punto);
+		}
+		return lista;
+	}
+	
+	/**
+	 * Devuelve un listado con todos los centros de extraccion.
+	 * 
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno listadoDeCentros(){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.
+		String strLista = "";
+		
+		for(int i = 0; i < cantPuntos; i++){
+			if(arrPuntos[i].getClass().getName().equals("Dominio.CentroDeExtraccion")){
+				CentroDeExtraccion ce = (CentroDeExtraccion) arrPuntos[i];
+				strLista += ce.getCoordX() + ";" + ce.getCoordY() + ";" + ce.getCapacidad() + "|";
+			}
+		}
+		
+		ret.setTipoError(TipoError.OK);
+		ret.setValorString(strLista);
+		
+		return ret;
+	}
+	
+	/**
+	 * Devuelve un listado de los apicultores ordenados por c�dula de forma ascendente.
+	 * 
+	 * @return Resultado del m�todo.
+	 */
+	public TipoRetorno listadoApicultores(){
+		TipoRetorno ret = new TipoRetorno();
+		String strApicultores = getApicultoresInOrden(this.treApicultores.getPrimerNodo());
+		ret.setTipoError(TipoError.OK);
+		ret.setValorString(strApicultores);
+		
+		return ret;
+	}
+	
+	/**
+	 * Recorre un arbol de Apicultores y devuelve un String con los datos de los mismos, ordenado
+	 * de forma ascendente por su c�dula.
+	 * 
+	 * @param a Instancia de Apicultor.
+	 * 
+	 * @return Resultado del m�todo.
+	 * 
+	 */
+	private String getApicultoresInOrden(Apicultor a){
+		String ret = "";
+		if(a != null){
+		ret += getApicultoresInOrden(a.getMenor());
+		ret += a.getCedula() + ";" + a.getNombre() + ";" + a.getCelular() + "|";
+		ret += getApicultoresInOrden(a.getMayor());
+		}
+		return ret;
 	}
 	/**
 	 * Registra un apiario de nombre nombre en el sistema, el cual está a cargo del apicultor de cédula
@@ -286,11 +437,47 @@ public class Sistema {
 	 * @param coordXf Coordenada para el eje X final.
 	 * @param coordYf Coordenada para el eje Y final.
 	 * @param peso Kilómetros del tramo.
-	 * @return
+	 * @return Resultado del método.
 	 */
 	public TipoRetorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int peso){
 		TipoRetorno ret = new TipoRetorno();
 		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto.
+		Punto pInicio = getPuntoByCoords(coordXi, coordYi);
+		Punto pFinal = getPuntoByCoords(coordXf, coordYf);
+		if(peso > 0){
+			if (pInicio != null && pFinal != null){
+				Tramo t = new Tramo(pInicio, pFinal, peso, null);
+				if(!lstTramos.existeTramo(t)){
+					lstTramos.agregarTramo(t);
+					ret.setTipoError(TipoError.OK);
+				}
+				else{
+					ret.setTipoError(TipoError.ERROR_3);//Ya existe el tramo.
+				}
+			} else {
+				ret.setTipoError(TipoError.ERROR_2); //No existe uno o ambos puntos.
+			}
+		}
+		else{
+			ret.setTipoError(TipoError.ERROR_1);
+		}
 		return ret;
+	}
+	/**
+	 * Obtiene un Punto dadas sus coordenadas.
+	 * @param coordX Coordenada del punto para el eje X.
+	 * @param coordY Coordenada del punto para el eje Y.
+	 * @return Punto ubicado en las coordenadas dadas, null si el punto no existe.
+	 */
+	public Punto getPuntoByCoords(double coordX, double coordY){
+		Punto p = null;
+		int i = 0;
+			while (p == null && i < cantPuntos){
+				if(arrPuntos[i].getCoordX() == coordX && arrPuntos[i].getCoordY() == coordY){
+					p = arrPuntos[i];
+				}
+				i++;
+			}
+		return p;
 	}
 }
