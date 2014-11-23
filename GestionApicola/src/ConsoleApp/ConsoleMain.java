@@ -180,6 +180,11 @@ public class ConsoleMain {
 			System.out.println("Las coordenadas deben estar en un formato númerico.");
 		}
 	}
+	/**
+	 * Registra un nuevo apiario en el sistema.
+	 * @param s Scanner para leer datos ingresados por el usuario.
+	 * @throws IOException
+	 */
 	private static void registrarApiario(Scanner s) throws IOException{
 		TipoRetorno ret = new TipoRetorno();
 		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto
