@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (19-nov-2014 3:20:32)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 17:40:13)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Fachada del sistema. Utiliza Singleton.
@@ -49,7 +49,7 @@
 	 * recibe como parámetros en el mapa. Los puntos del mapa serán las
 	 * ciudades, puntos de extracción, o apiarios.
 	 * 
-	 * @param cantPuntos
+	 * @param vCantPuntos
 	 *            Cantidad máxima de puntos soportados por el sistema a crear.
 	 * @return Resultado del método.
 	 */
@@ -195,5 +195,51 @@
 		}
 <span class="fc" id="L196">		return aux;</span>
 	}
+	/**
+	 * Registra un apiario de nombre nombre en el sistema, el cual está a cargo del apicultor de cédula
+	 * cedula_apicultor y tiene una capacidad de producción de capacidad litros de miel por mes.
+	 * @param nombre Nombre del apiario.
+	 * @param coordX Coordinada del eje X.
+	 * @param coordY Coordinada del eje Y.
+	 * @param cedula_apicultor Cédula de identidad del apicultor a cargo del apiario.
+	 * @param capacidad Capacidad del producción (en litros de miel por mes).
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarApiario(String nombre, double coordX, double coordY, int cedula_apicultor,
+			int capacidad){
+<span class="fc" id="L210">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L211">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
+<span class="fc" id="L212">		Apicultor a = new Apicultor();</span>
+<span class="fc" id="L213">		a.setCedula(cedula_apicultor);</span>
+<span class="fc" id="L214">		a = treApicultores.existeApicultor(a, treApicultores.getPrimerNodo());</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">		if (a != null){</span>
+<span class="fc" id="L216">			Apiario api = new Apiario(nombre, coordX, coordY, capacidad, a);</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">			if (!existePunto(api)) {</span>
+<span class="fc" id="L218">				boolean aux = false;</span>
+<span class="fc" id="L219">				int i = 0;</span>
+<span class="fc bfc" id="L220" title="All 4 branches covered.">				while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
+<span class="fc bfc" id="L221" title="All 2 branches covered.">					if (arrPuntos[i] == null) {</span>
+<span class="fc" id="L222">						arrPuntos[i] = api;</span>
+<span class="fc" id="L223">						aux = true;</span>
+<span class="fc" id="L224">						ret.setTipoError(TipoError.OK);</span>
+<span class="pc bpc" id="L225" title="1 of 4 branches missed.">					} else if (arrPuntos[i].getCoordX() == api.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == api.getCoordY()) {</span>
+<span class="fc" id="L226">						ret.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc" id="L227">						aux = true;</span>
+					}
+<span class="fc" id="L229">					i++;</span>
+				}
+<span class="fc bfc" id="L231" title="All 2 branches covered.">				if (aux == false) {</span>
+<span class="fc" id="L232">					ret.setTipoError(TipoError.ERROR_1);</span>
+				}
+			}
+			else{
+<span class="fc" id="L236">				ret.setTipoError(TipoError.ERROR_3);</span>
+			}
+		}
+		else{
+<span class="fc" id="L240">			ret.setTipoError(TipoError.ERROR_4); //No existe apicultor.</span>
+		}
+<span class="fc" id="L242">		return ret;</span>
+	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (19-nov-2014 3:20:32)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 17:40:13)</div></body></html>

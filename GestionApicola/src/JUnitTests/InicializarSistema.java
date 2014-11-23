@@ -10,6 +10,8 @@ public class InicializarSistema {
 
 	@Test
 	public void testInicializarSistema() {
+		//Destruye el sistema por las dudas que ya haya sido inicializado antes:
+		Sistema.getInstancia().destruirSistema();
 		TipoRetorno tr = Sistema.getInstancia().inicializarSistema(0);
 		assertEquals("No se puede inicializar el sistema con 0 puntos",
 				TipoError.ERROR_1, tr.getTipoError());
