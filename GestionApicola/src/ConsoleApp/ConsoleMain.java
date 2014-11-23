@@ -46,6 +46,9 @@ public class ConsoleMain {
 				case 4:
 					registrarCiudad(scan);
 					break;
+				case 5:
+					registrarApiario(scan);
+					break;
 				}
 			} while (intOptMenu != 0);
 		} catch (InputMismatchException ime) {
@@ -62,6 +65,7 @@ public class ConsoleMain {
 		System.out.println("2 - Destruir sistema.");
 		System.out.println("3 - Registrar Apicultor.");
 		System.out.println("4 - Registrar Ciudad.");
+		System.out.println("5 - Registrar Apiario");
 		System.out.println("0 - Salir de la aplicación.");
 	}
 
@@ -174,6 +178,39 @@ public class ConsoleMain {
 			System.in.read();
 		} catch (InputMismatchException ime) {
 			System.out.println("Las coordenadas deben estar en un formato númerico.");
+		}
+	}
+	private static void registrarApiario(Scanner s) throws IOException{
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto
+		try {
+			System.out.println("Ingrese el nombre del Apiario");
+			String nombre = s.nextLine();
+			System.out.println("Ingrese la coordenada para el eje x:");
+			double x = s.nextDouble();
+			System.out.println("Ingrese la coordenada para el eje y;");
+			double y = s.nextDouble();
+			System.out.println("Ingrese la cédula del apicultor:");
+			int cedula = s.nextInt();
+			System.out.println("Ingrese la capacidad en litros por mes:");
+			int capacidad = s.nextInt();
+			ret = Sistema.getInstancia().registrarApiario(nombre, x, y, cedula, capacidad);
+			if(ret.getTipoError() == TipoError.ERROR_1){
+				System.out.println("No se pueden registrar más puntos en el sistema.");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_2){
+				System.out.println("Ya existe un punto en el sistema en las coordenadas" +y+","+x+".");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_3){
+				System.out.println("Ya existe un punto en el sistema con el nombre"+nombre+".");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_4){
+				System.out.println("La cédula ingresada no coincide con ningún apicultor registrado en el sistema.");
+			}
+			System.in.read();
+		}
+		catch(InputMismatchException ime){
+			System.out.println("Las coordenadas, la cédula del apicultor y la capacidad deben estar en un formato númerico.");
 		}
 	}
 }

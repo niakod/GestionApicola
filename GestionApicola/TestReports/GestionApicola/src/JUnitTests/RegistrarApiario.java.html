@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RegistrarApiario.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 17:40:13)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">RegistrarApiario.java</span></div><h1>RegistrarApiario.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class RegistrarApiario {</span>
+
+	@Test
+	public void test() {
+		//Destruye el sistema, si existe, e inicializa un nuevo sistema para 3 puntos:
+<span class="fc" id="L16">		Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">		Sistema.getInstancia().inicializarSistema(3);</span>
+		//Registro de un apiculto para los apiarios:
+<span class="fc" id="L19">		Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);</span>
+		//Registro de una ciudad (también es punto, ocupa un lugar de los puntos del sistema):
+<span class="fc" id="L21">		Sistema.getInstancia().registrarCiudad(&quot;Maldonado&quot;, -34.908807, -54.958212);</span>
+		//Casos de prueba:
+<span class="fc" id="L23">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L24">		ret = Sistema.getInstancia().registrarApiario(&quot;Abejas felices&quot;, -34.903704, -54.973533, 12223334, 20);</span>
+<span class="fc" id="L25">		assertEquals(&quot;Primer apiario ingresador de forma correcta&quot;,TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L26">		ret = Sistema.getInstancia().registrarApiario(&quot;Melosos Anónimos&quot;, -33.900571, -54.962933, 12223334, 45);</span>
+<span class="fc" id="L27">		assertEquals(&quot;Segundo apiario registrado&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L28">		ret = Sistema.getInstancia().registrarApiario(&quot;Un apiario&quot;, -34.908807, -54.958212, 12223334, 27);</span>
+<span class="fc" id="L29">		assertEquals(&quot;Registro de apiario en coordenadas de una ciudad (otro punto ya registrado en el sistema&quot;,</span>
+<span class="fc" id="L30">				TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L31">		ret = Sistema.getInstancia().registrarApiario(&quot;Otro apiario&quot;, -34.908807, -54.958222, 10009999, 80);</span>
+<span class="fc" id="L32">		assertEquals(&quot;Registro de un apiario cuando la cédula del apicultor no existe en el sistema&quot;,</span>
+<span class="fc" id="L33">				TipoError.ERROR_4, ret.getTipoError());</span>
+<span class="fc" id="L34">		ret = Sistema.getInstancia().registrarApiario(&quot;Abejas felices&quot;, -34.903724, -54.973553, 12223334, 20);</span>
+<span class="fc" id="L35">		assertEquals(&quot;Registro de un apiario cuyo nombre ya ha sido registrado&quot;, TipoError.ERROR_3, ret.getTipoError());</span>
+<span class="fc" id="L36">		ret = Sistema.getInstancia().registrarApiario(&quot;Maldonado&quot;, -34.800571, -54.862933, 12223334, 45);</span>
+<span class="fc" id="L37">		assertEquals(&quot;Registro de un apiario cuando el nombre ya pertenece a un punto del sistema&quot;, TipoError.ERROR_3,</span>
+<span class="fc" id="L38">				ret.getTipoError());</span>
+<span class="fc" id="L39">		ret = Sistema.getInstancia().registrarApiario(&quot;Miel para todos&quot;, -34.902118, -54.944951, 12223334, 60);</span>
+<span class="fc" id="L40">		assertEquals(&quot;Registro de un apiario cuando ya no se pueden añadir nuevos puntos al sistema&quot;,</span>
+<span class="fc" id="L41">				TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L42">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 17:40:13)</div></body></html>
