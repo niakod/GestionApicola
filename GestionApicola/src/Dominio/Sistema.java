@@ -195,4 +195,50 @@ public class Sistema {
 		}
 		return aux;
 	}
+	/**
+	 * Registra un apiario de nombre nombre en el sistema, el cual está a cargo del apicultor de cédula
+	 * cedula_apicultor y tiene una capacidad de producción de capacidad litros de miel por mes.
+	 * @param nombre Nombre del apiario.
+	 * @param coordX Coordinada del eje X.
+	 * @param coordY Coordinada del eje Y.
+	 * @param cedula_apicultor Cédula de identidad del apicultor a cargo del apiario.
+	 * @param capacidad Capacidad del producción (en litros de miel por mes).
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno registrarApiario(String nombre, double coordX, double coordY, int cedula_apicultor,
+			int capacidad){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.
+		Apicultor a = new Apicultor();
+		a.setCedula(cedula_apicultor);
+		a = treApicultores.existeApicultor(a, treApicultores.getPrimerNodo());
+		if (a != null){
+			Apiario api = new Apiario(nombre, coordX, coordY, capacidad, a);
+			if (!existePunto(api)) {
+				boolean aux = false;
+				int i = 0;
+				while (aux == false && i < cantPuntos) {
+					if (arrPuntos[i] == null) {
+						arrPuntos[i] = api;
+						aux = true;
+						ret.setTipoError(TipoError.OK);
+					} else if (arrPuntos[i].getCoordX() == api.getCoordX() && arrPuntos[i].getCoordY() == api.getCoordY()) {
+						ret.setTipoError(TipoError.ERROR_2);
+						aux = true;
+					}
+					i++;
+				}
+				if (aux == false) {
+					ret.setTipoError(TipoError.ERROR_1);
+				}
+			}
+			else{
+				ret.setTipoError(TipoError.ERROR_3);
+			}
+		}
+		else{
+			ret.setTipoError(TipoError.ERROR_4); //No existe apicultor.
+		}
+		return ret;
+	}
 }

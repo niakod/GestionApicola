@@ -57,7 +57,7 @@ public class ArbolApicultores {
 			aux = true;
 		}
 		//Sino, si no existe un apicultor con la cédula del nuevo nodo:
-		else if(!existeApicultor(nodoApicultor,this.primerNodo)){
+		else if(existeApicultor(nodoApicultor,this.primerNodo) == null){
 			//Mientras no se agregue el nuevo nodo:
 			while (aux == false){
 				//Si el nuevo nodo es menor al nodo actual:
@@ -95,11 +95,11 @@ public class ArbolApicultores {
 	 * @param oRaiz Nodo actual.
 	 * @return true si existe el apicultor buscado, false si no existe.
 	 */
-	public boolean existeApicultor(Apicultor oApicultor, Apicultor oRaiz){
-		boolean aux = false;
+	public Apicultor existeApicultor(Apicultor oApicultor, Apicultor oRaiz){
+		Apicultor aux = null;
 		//Caso base: encuentra un apicultor con la misma cédula.
 		if (oRaiz.getCedula() == oApicultor.getCedula()){
-			aux = true;
+			aux = oRaiz;
 		}
 		//Si el nodo derecho es nulo:
 		else if(oRaiz.getMayor() == null){
