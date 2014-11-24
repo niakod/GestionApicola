@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RegistrarTramo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 20:59:46)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">RegistrarTramo.java</span></div><h1>RegistrarTramo.java</h1><pre class="source lang-java linenums">package JUnitTests;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>RegistrarTramo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 0:28:10)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">RegistrarTramo.java</span></div><h1>RegistrarTramo.java</h1><pre class="source lang-java linenums">package JUnitTests;
 
 import static org.junit.Assert.*;
 
@@ -8,37 +8,37 @@ import Dominio.Sistema;
 import Dominio.TipoError;
 import Dominio.TipoRetorno;
 
-<span class="nc" id="L11">public class RegistrarTramo {</span>
+<span class="fc" id="L11">public class RegistrarTramo {</span>
 
 	@Test
 	public void test() {
 		//Se destruye (si existe) el sistema y se crea para 3 puntos:
-<span class="nc" id="L16">		Sistema.getInstancia().destruirSistema();</span>
-<span class="nc" id="L17">		Sistema.getInstancia().inicializarSistema(3);</span>
+<span class="fc" id="L16">		Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">		Sistema.getInstancia().inicializarSistema(3);</span>
 		//Se registran tres puntos en el sistema y un apicultor para el apiario:
-<span class="nc" id="L19">		Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);//Apicultor</span>
-<span class="nc" id="L20">		Sistema.getInstancia().registrarCiudad(&quot;Maldonado&quot;, -34.908807, -54.958212); //Ciudad</span>
-<span class="nc" id="L21">		Sistema.getInstancia().registrarApiario(&quot;Abejas felices&quot;, -34.903704, -54.973533, 12223334, 20);//Apiario</span>
-<span class="nc" id="L22">		Sistema.getInstancia().registrarCentro(&quot;Maldonado Extracciones&quot;, -34.908827, -54.958256, 220);//Centro de extracción</span>
+<span class="fc" id="L19">		Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);//Apicultor</span>
+<span class="fc" id="L20">		Sistema.getInstancia().registrarCiudad(&quot;Maldonado&quot;, -34.908807, -54.958212); //Ciudad</span>
+<span class="fc" id="L21">		Sistema.getInstancia().registrarApiario(&quot;Abejas felices&quot;, -34.903704, -54.973533, 12223334, 20);//Apiario</span>
+<span class="fc" id="L22">		Sistema.getInstancia().registrarCentro(&quot;Maldonado Extracciones&quot;, -34.908827, -54.958256, 220);//Centro de extracción</span>
 		//Test:
-<span class="nc" id="L24">		TipoRetorno ret = new TipoRetorno();</span>
-<span class="nc" id="L25">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908807, -54.958212, 1);</span>
-<span class="nc" id="L26">		assertEquals(&quot;Registro de un tramo&quot;, TipoError.OK, ret.getTipoError());</span>
-<span class="nc" id="L27">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908807, -54.958212, 1);</span>
-<span class="nc" id="L28">		assertEquals(&quot;Registro de un tramo ya registrado&quot;, TipoError.ERROR_3, ret.getTipoError());</span>
-<span class="nc" id="L29">		ret = Sistema.getInstancia().registrarTramo(-34.908807, -54.958212,-34.903704, -54.973533, 1);</span>
-<span class="nc" id="L30">		assertEquals(&quot;Registro de un tramo ya registrado con los puntos invertidos&quot;, TipoError.ERROR_3, ret.getTipoError());</span>
-<span class="nc" id="L31">		ret = Sistema.getInstancia().registrarTramo(-33.903704, -53.973533, -33.908807, -34.958212, 1);</span>
-<span class="nc" id="L32">		assertEquals(&quot;Registro de un tramo cuyos dos puntos no existen&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
-<span class="nc" id="L33">		ret = Sistema.getInstancia().registrarTramo(-14.903704, -14.973533, -34.908807, -54.958212, 1);</span>
-<span class="nc" id="L34">		assertEquals(&quot;Registro de un tramo cuyo punto inicial no existe&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
-<span class="nc" id="L35">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -14.908807, -14.958212, 1);</span>
-<span class="nc" id="L36">		assertEquals(&quot;Registro de un tramo cuyo punto final no existe&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
-<span class="nc" id="L37">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908827, -54.958256, 0);</span>
-<span class="nc" id="L38">		assertEquals(&quot;Registro de un tramo cuyo peso es cero&quot;, TipoError.ERROR_1, ret.getTipoError());</span>
-<span class="nc" id="L39">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908827, -54.958256, -1);</span>
-<span class="nc" id="L40">		assertEquals(&quot;Registro de un tramo cuyo peso es menor que cero&quot;, TipoError.ERROR_1, ret.getTipoError());</span>
-<span class="nc" id="L41">	}</span>
+<span class="fc" id="L24">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L25">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908807, -54.958212, 1);</span>
+<span class="fc" id="L26">		assertEquals(&quot;Registro de un tramo&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L27">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908807, -54.958212, 1);</span>
+<span class="fc" id="L28">		assertEquals(&quot;Registro de un tramo ya registrado&quot;, TipoError.ERROR_3, ret.getTipoError());</span>
+<span class="fc" id="L29">		ret = Sistema.getInstancia().registrarTramo(-34.908807, -54.958212,-34.903704, -54.973533, 1);</span>
+<span class="fc" id="L30">		assertEquals(&quot;Registro de un tramo ya registrado con los puntos invertidos&quot;, TipoError.ERROR_3, ret.getTipoError());</span>
+<span class="fc" id="L31">		ret = Sistema.getInstancia().registrarTramo(-33.903704, -53.973533, -33.908807, -34.958212, 1);</span>
+<span class="fc" id="L32">		assertEquals(&quot;Registro de un tramo cuyos dos puntos no existen&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L33">		ret = Sistema.getInstancia().registrarTramo(-14.903704, -14.973533, -34.908807, -54.958212, 1);</span>
+<span class="fc" id="L34">		assertEquals(&quot;Registro de un tramo cuyo punto inicial no existe&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L35">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -14.908807, -14.958212, 1);</span>
+<span class="fc" id="L36">		assertEquals(&quot;Registro de un tramo cuyo punto final no existe&quot;, TipoError.ERROR_2, ret.getTipoError());</span>
+<span class="fc" id="L37">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908827, -54.958256, 0);</span>
+<span class="fc" id="L38">		assertEquals(&quot;Registro de un tramo cuyo peso es cero&quot;, TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L39">		ret = Sistema.getInstancia().registrarTramo(-34.903704, -54.973533, -34.908827, -54.958256, -1);</span>
+<span class="fc" id="L40">		assertEquals(&quot;Registro de un tramo cuyo peso es menor que cero&quot;, TipoError.ERROR_1, ret.getTipoError());</span>
+<span class="fc" id="L41">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 20:59:46)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 0:28:10)</div></body></html>

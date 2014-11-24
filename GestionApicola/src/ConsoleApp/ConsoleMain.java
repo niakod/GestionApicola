@@ -1,6 +1,9 @@
 package ConsoleApp;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,8 +22,9 @@ public class ConsoleMain {
 	 * 
 	 * @param args
 	 * @throws IOException
+	 * @throws URISyntaxException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, URISyntaxException {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("          __");
 		System.out.println("         // \\                            _ _  __");
@@ -52,7 +56,12 @@ public class ConsoleMain {
 				case 6:
 					registrarCentro(scan);
 					break;
-				case 7: registrarTramo(scan);
+				case 7: 
+					registrarTramo(scan);
+					break;
+				case 8:
+					mostrarMapa();
+					break;
 				}
 			} while (intOptMenu != 0);
 		} catch (InputMismatchException ime) {
@@ -72,6 +81,7 @@ public class ConsoleMain {
 		System.out.println("5 - Registrar Apiario");
 		System.out.println("6 - Registrar Centro");
 		System.out.println("7 - Registrar Tramo");
+		System.out.println("8 - Mostrar mapa de estado");
 		System.out.println("0 - Salir de la aplicación.");
 	}
 
@@ -282,5 +292,14 @@ public class ConsoleMain {
 		} catch (InputMismatchException ime) {
 			System.out.println("Las coordenadas deben estar en un formato númerico.");
 		}
+	}
+	/**
+	 * Abre una ventana del navegador y muestra en un mapa de Google Maps todos los puntos registrados en el sistema.
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
+	public static void mostrarMapa() throws IOException, URISyntaxException{
+		TipoRetorno ret = Sistema.getInstancia().mapaEstado();
+		Desktop.getDesktop().browse(new URI(ret.getValorString()));
 	}
 }

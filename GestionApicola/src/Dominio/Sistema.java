@@ -480,4 +480,35 @@ public class Sistema {
 			}
 		return p;
 	}
+	/**
+	 * Genera la cadena para un mapa de Google Maps que muestre todos los puntos registrados en el sistema (apiarios,
+	 * ciudades y centros de extracción.
+	 * Para diferenciarlos, mostrará las ciudades en rojo, los centros de extracción en verde y los centros de
+	 * extracción en amarillo.
+	 * @return Resultado del metodo.
+	 */
+	public TipoRetorno mapaEstado(){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto
+		int i = 0;
+		String aux = "";
+		if(arrPuntos[0] != null){
+			aux = "http://maps.googleapis.com/maps/api/staticmap?center=-34.9054885,-54.9636822&zoom=13&size=640x640&maptype=roadmap";
+			while (i < cantPuntos && arrPuntos[i] != null){
+				if(arrPuntos[i].getClass().equals(Ciudad.class)){
+					aux += "&markers=color:red%7Clabel:C%7C"+arrPuntos[i].getCoordX()+","+arrPuntos[i].getCoordY();
+				}
+				else if(arrPuntos[i].getClass().equals(CentroDeExtraccion.class)){
+					aux += "&markers=color:green%7Clabel:E%7C"+arrPuntos[i].getCoordX()+","+arrPuntos[i].getCoordY();
+				}
+				else if(arrPuntos[i].getClass().equals(Apiario.class)){
+					aux += "&markers=color:yellow%7Clabel:A%7C"+arrPuntos[i].getCoordX()+","+arrPuntos[i].getCoordY();
+				}
+				i++;
+			}
+		}
+		ret.setTipoError(TipoError.OK);
+		ret.setValorString(aux);
+		return ret;
+	}
 }
