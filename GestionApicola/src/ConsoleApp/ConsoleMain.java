@@ -251,6 +251,11 @@ public class ConsoleMain {
 			System.out.println("Las coordenadas, la cédula del apicultor y la capacidad deben estar en un formato númerico.");
 		}
 	}
+	/**
+	 * Registra un nuevo centro de extracción.
+	 * @param s Scanner para leer datos ingresados por el usuario.
+	 * @throws IOException
+	 */
 	private static void registrarCentro(Scanner s) throws IOException {
 		try {
 			System.out.println("Ingrese el nombre del centro:");
@@ -367,6 +372,10 @@ public class ConsoleMain {
 			System.out.println("Las coordenadas deben estar en un formato númerico.");
 		}
 	}
+	/**
+	 * Lista los centros de extraccion existentes en el sistema.
+	 * @throws IOException
+	 */
 	private static void listarCentros() throws IOException{
 		TipoRetorno ret = Sistema.getInstancia().listadoDeCentros();
 		System.out.println(ret.getTipoError().toString());
@@ -375,6 +384,10 @@ public class ConsoleMain {
 		}
 		System.in.read();
 	}
+	/**
+	 * Lista los apicultores registrados en el sistema.
+	 * @throws IOException
+	 */
 	private static void listarApicultores() throws IOException{
 		TipoRetorno ret = Sistema.getInstancia().listadoApicultores();
 		System.out.println(ret.getTipoError().toString());
