@@ -256,8 +256,7 @@ public class Sistema {
 		if (t.getPeso() + distanciaParcial <= 20) {
 			if (t.getPuntoI().getCoordX() == punto.getCoordX()
 					&& t.getPuntoI().getCoordY() == punto.getCoordY()) {
-				if (t.getPuntoF().getClass().getName()
-						.equals("Dominio.Apiario")) {
+				if (t.getPuntoF().getClass().equals(Apiario.class)) {
 					lista += t.getPuntoF().getCoordX() + ";"
 							+ t.getPuntoF().getCoordY() + "|";
 				}
@@ -269,8 +268,7 @@ public class Sistema {
 				}
 			} else if (t.getPuntoF().getCoordX() == punto.getCoordX()
 					&& t.getPuntoF().getCoordY() == punto.getCoordY()) {
-				if (t.getPuntoI().getClass().getName()
-						.equals("Dominio.Apiario")) {
+				if (t.getPuntoI().getClass().equals(Apiario.class)) {
 					lista += t.getPuntoI().getCoordX() + ";"
 							+ t.getPuntoI().getCoordY() + "|";
 
