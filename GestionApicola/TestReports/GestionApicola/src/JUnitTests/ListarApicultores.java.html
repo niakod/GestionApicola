@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ListarApicultores.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 13:30:31)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">ListarApicultores.java</span></div><h1>ListarApicultores.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class ListarApicultores {</span>
+
+	@Test
+	public void test() {
+		//Se destruye (si existe) el sistema y se crea para 8 puntos:
+<span class="fc" id="L16">				Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">				Sistema.getInstancia().inicializarSistema(8);</span>
+				//Apicultores
+<span class="fc" id="L19">				Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);</span>
+<span class="fc" id="L20">				Sistema.getInstancia().registrarApicultor(10001119, &quot;Little Apikultor&quot;, &quot;Las flores esq. Las acacias&quot;, &quot;little@apicultores.net&quot;, &quot;094111222&quot;);</span>
+<span class="fc" id="L21">				Sistema.getInstancia().registrarApicultor(19992229, &quot;Big Apikultor&quot;, &quot;Madre selva esq. Avisapas&quot;, &quot;big@apicultores.net&quot;, &quot;091888999&quot;);</span>
+<span class="fc" id="L22">				Sistema.getInstancia().registrarApicultor(11112222, &quot;Señor Apikultor&quot;, &quot;Jasmín esq. Orquídeas&quot;, &quot;señor@apicultores.net&quot;, &quot;093123123&quot;);</span>
+<span class="fc" id="L23">				Sistema.getInstancia().registrarApicultor(10001000, &quot;Señora Apikultora&quot;, &quot;Jasmín esq. Orquídeas&quot;, &quot;señora@apicultores.net&quot;, &quot;093123456&quot;);</span>
+<span class="fc" id="L24">				Sistema.getInstancia().registrarApicultor(21112111, &quot;Melina Miel&quot;, &quot;Dr.Edye y Rincón&quot;, &quot;melimiel@apicultores.net&quot;, &quot;098998998&quot;);</span>
+<span class="fc" id="L25">				Sistema.getInstancia().registrarApicultor(29001234, &quot;Luis Panales&quot;, &quot;Su casa&quot;, &quot;panales@gmail.com&quot;, &quot;096999888&quot;);</span>
+				//Test
+<span class="fc" id="L27">				TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L28">				String textoEsperado = &quot;10001000;Señora Apikultora;093123456|10001119;Little Apikultor;094111222|11112222;Señor Apikultor;093123123|12223334;Jhon Abejas;099111222|19992229;Big Apikultor;091888999|21112111;Melina Miel;098998998|29001234;Luis Panales;096999888|&quot;;</span>
+<span class="fc" id="L29">				ret = Sistema.getInstancia().listadoApicultores();</span>
+<span class="fc" id="L30">				assertEquals(&quot;Listado de Apicultores registrados, ordenado por cedula de manera ascendente&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L31">				assertEquals(&quot;String conteniendo los Apicultores registrados&quot;, textoEsperado, ret.getValorString());</span>
+				
+<span class="fc" id="L33">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 13:30:31)</div></body></html>

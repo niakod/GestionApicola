@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ListarApiarios.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 13:30:31)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">ListarApiarios.java</span></div><h1>ListarApiarios.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class ListarApiarios {</span>
+
+	@Test
+	public void test() {
+		//Se destruye (si existe) el sistema y se crea para 8 puntos:
+<span class="fc" id="L16">				Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">				Sistema.getInstancia().inicializarSistema(8);</span>
+				//Se registran tres puntos en el sistema y un apicultor para el apiario:
+<span class="fc" id="L19">				Sistema.getInstancia().registrarApicultor(12223334,&quot;Jhon Abejas&quot;,&quot;Abejorro, Las Camelias esq. El Ceibo&quot;,&quot;jhon@abejas.com&quot;,&quot;099111222&quot;);//Apicultor</span>
+<span class="fc" id="L20">				Sistema.getInstancia().registrarCiudad(&quot;Ciudad_1&quot;, -45.90, -53.88); //Ciudad</span>
+<span class="fc" id="L21">				Sistema.getInstancia().registrarCiudad(&quot;Ciudad_2&quot;, -23.999, -88.2654); //Ciudad</span>
+<span class="fc" id="L22">				Sistema.getInstancia().registrarApiario(&quot;Apiario_1&quot;, -34.25, -54.97, 12223334, 20);//Apiario</span>
+<span class="fc" id="L23">				Sistema.getInstancia().registrarApiario(&quot;Apiario_2&quot;, -25.63, -36.99, 12223334, 35);//Apiario</span>
+<span class="fc" id="L24">				Sistema.getInstancia().registrarApiario(&quot;Apiario_3&quot;, -17.897, -36.54, 12223334, 96);//Apiario</span>
+<span class="fc" id="L25">				Sistema.getInstancia().registrarApiario(&quot;Apiario_4&quot;, -52.47, -99.36, 12223334, 36);//Apiario</span>
+<span class="fc" id="L26">				Sistema.getInstancia().registrarApiario(&quot;Apiario_5&quot;, -99.87452, -57.6698, 12223334, 78);//Apiario</span>
+<span class="fc" id="L27">				Sistema.getInstancia().registrarCentro(&quot;Ciudad_1 Extracciones&quot;, -34.908827, -54.958256, 220);//Centro de extracción</span>
+				//Tramos
+<span class="fc" id="L29">				Sistema.getInstancia().registrarTramo(-45.90, -53.88, -34.25, -54.97, 3);</span>
+<span class="fc" id="L30">				Sistema.getInstancia().registrarTramo(-34.25, -54.97, -23.999, -88.2654, 3);</span>
+<span class="fc" id="L31">				Sistema.getInstancia().registrarTramo(-45.90, -53.88, -34.908827, -54.958256, 3);</span>
+<span class="fc" id="L32">				Sistema.getInstancia().registrarTramo(-34.908827, -54.958256, -17.897, -36.54, 5);</span>
+<span class="fc" id="L33">				Sistema.getInstancia().registrarTramo(-17.897, -36.54, -99.87452, -57.6698, 5);</span>
+<span class="fc" id="L34">				Sistema.getInstancia().registrarTramo(-45.90, -53.88, -25.63, -36.99, 10);</span>
+<span class="fc" id="L35">				Sistema.getInstancia().registrarTramo(-25.63, -36.99, -52.47, -99.36, 12);</span>
+				//Test:
+<span class="fc" id="L37">				TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L38">				String textoEsperado = &quot;-34.25;-54.97|-25.63;-36.99|-17.897;-36.54|-99.87452;-57.6698|&quot;;</span>
+				//ret = Sistema.getInstancia().listadoDeApiariosEnCiudad(-45.90, -53.88);
+				//assertEquals(&quot;Listado de Apiarios alcanzables en 20 km de recorrido desde Ciudad_1&quot;, TipoError.OK, ret.getTipoError());
+				//System.out.println(ret.getValorString());
+				//assertEquals(&quot;String conteniendo los Apiarios&quot;, textoEsperado, ret.getValorString());
+<span class="fc" id="L43">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 13:30:31)</div></body></html>

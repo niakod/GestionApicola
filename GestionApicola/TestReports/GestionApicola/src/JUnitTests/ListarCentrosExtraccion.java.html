@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ListarCentrosExtraccion.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 13:30:31)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">JUnitTests</a> &gt; <span class="el_source">ListarCentrosExtraccion.java</span></div><h1>ListarCentrosExtraccion.java</h1><pre class="source lang-java linenums">package JUnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import Dominio.Sistema;
+import Dominio.TipoError;
+import Dominio.TipoRetorno;
+
+<span class="fc" id="L11">public class ListarCentrosExtraccion {</span>
+
+	@Test
+	public void testListarCentrosExtraccion() {
+		//Se destruye (si existe) el sistema y se crea para 8 puntos:
+<span class="fc" id="L16">		Sistema.getInstancia().destruirSistema();</span>
+<span class="fc" id="L17">		Sistema.getInstancia().inicializarSistema(8);</span>
+<span class="fc" id="L18">		Sistema.getInstancia().registrarCiudad(&quot;Ciudad_1&quot;, -45.90, -53.88); //Ciudad</span>
+<span class="fc" id="L19">		Sistema.getInstancia().registrarCiudad(&quot;Ciudad_2&quot;, -23.999, -88.2654); //Ciudad</span>
+<span class="fc" id="L20">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_1 Extracciones&quot;, -34.25, -54.97, 362);//Centro de extracción</span>
+<span class="fc" id="L21">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_2 Extracciones&quot;, -25.63, -36.99, 636);//Centro de extracción</span>
+<span class="fc" id="L22">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_3 Extracciones&quot;, -17.897, -36.54, 870);//Centro de extracción</span>
+<span class="fc" id="L23">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_4 Extracciones&quot;, -52.47, -99.36, 360);//Centro de extracción</span>
+<span class="fc" id="L24">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_5 Extracciones&quot;, -99.87452, -57.6698, 500);//Centro de extracción</span>
+<span class="fc" id="L25">		Sistema.getInstancia().registrarCentro(&quot;Ciudad_6 Extracciones&quot;, -34.908827, -54.958256, 220);//Centro de extracción</span>
+		//test
+<span class="fc" id="L27">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L28">		String textoEsperado = &quot;-34.25;-54.97;362|-25.63;-36.99;636|-17.897;-36.54;870|-52.47;-99.36;360|-99.87452;-57.6698;500|-34.908827;-54.958256;220|&quot;;</span>
+<span class="fc" id="L29">		ret = Sistema.getInstancia().listadoDeCentros();</span>
+<span class="fc" id="L30">		assertEquals(&quot;Listado de Centros de extraccion registrados en el sistema&quot;, TipoError.OK, ret.getTipoError());</span>
+<span class="fc" id="L31">		assertEquals(&quot;String conteniendo los Centros de extraccion&quot;, textoEsperado, ret.getValorString());</span>
+<span class="fc" id="L32">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 13:30:31)</div></body></html>
