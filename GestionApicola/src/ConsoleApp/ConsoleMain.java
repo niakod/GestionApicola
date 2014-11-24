@@ -62,7 +62,20 @@ public class ConsoleMain {
 				case 8:
 					mostrarMapa();
 					break;
+				case 9:
+					mejorRuta(scan);
+					break;
+				case 10:
+					listarApiariosCiudad(scan);
+					break;
+				case 11:
+					listarCentros();
+					break;
+				case 12:
+					listarApicultores();
+					break;
 				}
+				
 			} while (intOptMenu != 0);
 		} catch (InputMismatchException ime) {
 			System.out.println("Debe ingresar un número entero.");
@@ -82,6 +95,10 @@ public class ConsoleMain {
 		System.out.println("6 - Registrar Centro");
 		System.out.println("7 - Registrar Tramo");
 		System.out.println("8 - Mostrar mapa de estado");
+		System.out.println("9 - Mejor ruta a centro de extracción");
+		System.out.println("10 - Listado de apiarios en ciudad");
+		System.out.println("11 - Listado de centros de extracción");
+		System.out.println("12 - Listado de apicultores");
 		System.out.println("0 - Salir de la aplicación.");
 	}
 
@@ -301,5 +318,69 @@ public class ConsoleMain {
 	public static void mostrarMapa() throws IOException, URISyntaxException{
 		TipoRetorno ret = Sistema.getInstancia().mapaEstado();
 		Desktop.getDesktop().browse(new URI(ret.getValorString()));
+	}
+	/**
+	 * Muestra la mejor ruta al centro más cercano.
+	 * @param s Scanner para leer los datos ingresados por el usuario.
+	 * @throws IOException 
+	 */
+	private static void mejorRuta(Scanner s) throws IOException{
+		try{
+			System.out.println("Ingrese la coordenada del eje X del apiario:");
+			double x = s.nextDouble();
+			System.out.println("Ingrese la coordenada para el eje Y del apiario:");
+			double y = s.nextDouble();
+			TipoRetorno ret = Sistema.getInstancia().rutaACentroMasCercano(x, y);
+			System.out.println(ret.getTipoError().toString());
+			if(ret.getTipoError() == TipoError.OK){
+				System.out.println(ret.getValorString());
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_1){
+				System.out.println("No existe un apiario en el sistema para las coordenadas ingresadas.");
+			}
+			else if(ret.getTipoError() == TipoError.ERROR_2){
+				System.out.println("No se encuentra ningún centro que pueda satisfacer la necesidad de extracción de los colmenares.");
+			}
+			System.in.read();
+		} catch (InputMismatchException ime) {
+			System.out.println("Las coordenadas deben estar en un formato númerico.");
+		}
+	}
+	/**
+	 * Lista los apiarios que pertenecen a una ciudad.
+	 * @param s Scanner para leer los datos ingresados por un usuario.
+	 * @throws IOException
+	 */
+	private static void listarApiariosCiudad(Scanner s) throws IOException{
+		try{
+			System.out.println("Ingrese la coordenada del eje X de la ciudad:");
+			double x = s.nextDouble();
+			System.out.println("Ingrese la coordenada para el eje Y de la ciudad:");
+			double y = s.nextDouble();
+			TipoRetorno ret = Sistema.getInstancia().listadoDeApiariosEnCiudad(x, y);
+			System.out.println(ret.getTipoError().toString());
+			if(ret.getTipoError() == TipoError.OK){
+				System.out.println(ret.getValorString());
+			}
+			System.in.read();
+		} catch (InputMismatchException ime) {
+			System.out.println("Las coordenadas deben estar en un formato númerico.");
+		}
+	}
+	private static void listarCentros() throws IOException{
+		TipoRetorno ret = Sistema.getInstancia().listadoDeCentros();
+		System.out.println(ret.getTipoError().toString());
+		if(ret.getTipoError() == TipoError.OK){
+			System.out.println(ret.getValorString());
+		}
+		System.in.read();
+	}
+	private static void listarApicultores() throws IOException{
+		TipoRetorno ret = Sistema.getInstancia().listadoApicultores();
+		System.out.println(ret.getTipoError().toString());
+		if(ret.getTipoError() == TipoError.OK){
+			System.out.println(ret.getValorString());
+		}
+		System.in.read();
 	}
 }

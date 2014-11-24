@@ -509,4 +509,16 @@ public class Sistema {
 		ret.setValorString(aux);
 		return ret;
 	}
+	/**
+	 * Calcula la ruta más corta desde el apiario al centro de extracción más cercano con capacidad suficiente.
+	 * @param coordX Coordenada X del Apiario.
+	 * @param coordY Coordenada Y del Apiario.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno rutaACentroMasCercano(double coordX, double coordY){
+		TipoRetorno ret = new TipoRetorno();
+		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto
+		//TODO: Logic
+		return ret;
+	}
 }
