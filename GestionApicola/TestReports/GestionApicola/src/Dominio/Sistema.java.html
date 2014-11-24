@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 18:18:58)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Sistema.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 0:28:10)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Sistema.java</span></div><h1>Sistema.java</h1><pre class="source lang-java linenums">package Dominio;
 
 /**
  * Fachada del sistema. Utiliza Singleton.
@@ -159,17 +159,17 @@
 <span class="fc" id="L159">					arrPuntos[i] = c;</span>
 <span class="fc" id="L160">					aux = true;</span>
 <span class="fc" id="L161">					ret.setTipoError(TipoError.OK);</span>
-<span class="pc bpc" id="L162" title="1 of 4 branches missed.">				} else if (arrPuntos[i].getCoordX() == c.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == c.getCoordY()) {</span>
-<span class="fc" id="L163">					ret.setTipoError(TipoError.ERROR_2);</span>
-<span class="fc" id="L164">					aux = true;</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">				} else if (arrPuntos[i].getCoordX() == c.getCoordX()</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">						&amp;&amp; arrPuntos[i].getCoordY() == c.getCoordY()) {</span>
+<span class="fc" id="L164">					ret.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc" id="L165">					aux = true;</span>
 				}
-<span class="fc" id="L166">				i++;</span>
+<span class="fc" id="L167">				i++;</span>
 			}
-<span class="fc bfc" id="L168" title="All 2 branches covered.">			if (aux == false) {</span>
-<span class="fc" id="L169">				ret.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">			if (aux == false) {</span>
+<span class="fc" id="L170">				ret.setTipoError(TipoError.ERROR_1);</span>
 			}
-		}
-		else{
+		} else {
 <span class="fc" id="L173">			ret.setTipoError(TipoError.ERROR_3);</span>
 		}
 <span class="fc" id="L175">		return ret;</span>
@@ -194,6 +194,157 @@
 <span class="fc" id="L194">			i++;</span>
 		}
 <span class="fc" id="L196">		return aux;</span>
+	}	
+
+	/**
+	 * 
+	 * @param coordX 
+	 * 		Coordenada en el eje x para la localización de la ciudad.
+	 * @param coordY
+	 * 		Coordenada en el eje y para la localización de la ciudad.
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno listadoDeApiariosEnCiudad(Double coordX, Double coordY) {
+<span class="nc" id="L208">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="nc" id="L209">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.</span>
+		
+		//Se crea una instancia de punto con las coordenadas recibidas como parametro.
+<span class="nc" id="L212">		Punto p = new Punto();</span>
+<span class="nc" id="L213">		p.setCoordX(coordX);</span>
+<span class="nc" id="L214">		p.setCoordY(coordY);</span>
+		//Se crea una lista auxiliar de tramos, en la que se guardan los que tengan un peso menor a 20.
+<span class="nc" id="L216">		ListaTramos lstAux = new ListaTramos();</span>
+<span class="nc" id="L217">		Tramo t = lstTramos.getPrimerTramo();</span>
+<span class="nc bnc" id="L218" title="All 4 branches missed.">		if (t != null &amp;&amp; t.getPeso() &lt;= 20) {</span>
+<span class="nc" id="L219">			lstAux.agregarTramo(t);</span>
+		}
+<span class="nc bnc" id="L221" title="All 2 branches missed.">		while(t.getSiguiente() != null){</span>
+<span class="nc" id="L222">			t = t.getSiguiente();</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">			if(t.getPeso() &lt;= 20){</span>
+<span class="nc" id="L224">				lstAux.agregarTramo(t);</span>
+			}
+		}
+<span class="nc" id="L227">		String strApiarios = &quot;&quot;;</span>
+<span class="nc" id="L228">		strApiarios = listarApiarios(lstAux, strApiarios, 0, p);</span>
+		
+<span class="nc" id="L230">		ret.setTipoError(TipoError.OK);</span>
+<span class="nc" id="L231">		ret.setValorString(strApiarios);</span>
+		
+<span class="nc" id="L233">		return ret;</span>
+		
+	}
+	
+	/**
+	 * Devuelve una lista de coordenadas X e Y de apiarios que sean alcanzables recorriendo no mas de 20 Kil�metros desde el
+	 * punto que define la ciudad.
+	 * 
+	 * @param lst 
+	 * 			Una copia de lstTramos.
+	 * @param lista 
+	 * 			Variable String que acumula las coordenadas de los apiarios encontrados.
+	 * @param distanciaParcial 
+	 * 			Siempre vale 0 si se parte del punto que define la ciudad; en caso que se este evaluando un tramo que 
+	 * enlazado al anterior pueda llevar a un apiario, el valor de este par�metro sera el del peso del tramo anterior.
+	 *
+	 * @param punto
+	 * 		punto de origen del tramo que se evalua.
+	 * @return Resultado del m�todo.
+	 */
+	private String listarApiarios(ListaTramos lst, String lista, int distanciaParcial,
+			Punto punto) {
+<span class="nc" id="L255">		Tramo t = lst.getPrimerTramo();</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">		if (t.getPeso() + distanciaParcial &lt;= 20) {</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">			if (t.getPuntoI().getCoordX() == punto.getCoordX()</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">					&amp;&amp; t.getPuntoI().getCoordY() == punto.getCoordY()) {</span>
+<span class="nc" id="L259">				if (t.getPuntoF().getClass().getName()</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">						.equals(&quot;Dominio.Apiario&quot;)) {</span>
+<span class="nc" id="L261">					lista += t.getPuntoF().getCoordX() + &quot;;&quot;</span>
+<span class="nc" id="L262">							+ t.getPuntoF().getCoordY() + &quot;|&quot;;</span>
+				}
+<span class="nc bnc" id="L264" title="All 2 branches missed.">				if (t.getSiguiente() != null) {</span>
+<span class="nc" id="L265">					Tramo tAux = t.getSiguiente();</span>
+<span class="nc" id="L266">					lst.eliminarTramo(t);</span>
+<span class="nc" id="L267">					lista = listarApiarios(lst, lista,</span>
+<span class="nc" id="L268">							tAux.getPeso(), tAux.getPuntoF());</span>
+				}
+<span class="nc bnc" id="L270" title="All 2 branches missed.">			} else if (t.getPuntoF().getCoordX() == punto.getCoordX()</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">					&amp;&amp; t.getPuntoF().getCoordY() == punto.getCoordY()) {</span>
+<span class="nc" id="L272">				if (t.getPuntoI().getClass().getName()</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">						.equals(&quot;Dominio.Apiario&quot;)) {</span>
+<span class="nc" id="L274">					lista += t.getPuntoI().getCoordX() + &quot;;&quot;</span>
+<span class="nc" id="L275">							+ t.getPuntoI().getCoordY() + &quot;|&quot;;</span>
+
+				}
+<span class="nc bnc" id="L278" title="All 2 branches missed.">				if (t.getSiguiente() != null) {</span>
+<span class="nc" id="L279">					Tramo tAux = t.getSiguiente();</span>
+<span class="nc" id="L280">					lst.eliminarTramo(t);</span>
+<span class="nc" id="L281">					lista = listarApiarios(lst, lista,</span>
+<span class="nc" id="L282">							tAux.getPeso(), tAux.getPuntoI());</span>
+				}
+
+			}
+		}
+<span class="nc bnc" id="L287" title="All 2 branches missed.">		if(t.getSiguiente() != null){</span>
+<span class="nc" id="L288">			lst.cambiarOrden();</span>
+<span class="nc" id="L289">			lista = listarApiarios(lst, lista, distanciaParcial, punto);</span>
+		}
+<span class="nc" id="L291">		return lista;</span>
+	}
+	
+	/**
+	 * Devuelve un listado con todos los centros de extraccion.
+	 * 
+	 * @return Resultado del método.
+	 */
+	public TipoRetorno listadoDeCentros(){
+<span class="nc" id="L300">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="nc" id="L301">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.</span>
+<span class="nc" id="L302">		String strLista = &quot;&quot;;</span>
+		
+<span class="nc bnc" id="L304" title="All 2 branches missed.">		for(int i = 0; i &lt; cantPuntos; i++){</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">			if(arrPuntos[i].getClass().getName().equals(&quot;Dominio.CentroDeExtraccion&quot;)){</span>
+<span class="nc" id="L306">				CentroDeExtraccion ce = (CentroDeExtraccion) arrPuntos[i];</span>
+<span class="nc" id="L307">				strLista += ce.getCoordX() + &quot;;&quot; + ce.getCoordY() + &quot;;&quot; + ce.getCapacidad() + &quot;|&quot;;</span>
+			}
+		}
+		
+<span class="nc" id="L311">		ret.setTipoError(TipoError.OK);</span>
+<span class="nc" id="L312">		ret.setValorString(strLista);</span>
+		
+<span class="nc" id="L314">		return ret;</span>
+	}
+	
+	/**
+	 * Devuelve un listado de los apicultores ordenados por c�dula de forma ascendente.
+	 * 
+	 * @return Resultado del m�todo.
+	 */
+	public TipoRetorno listadoApicultores(){
+<span class="nc" id="L323">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="nc" id="L324">		String strApicultores = getApicultoresInOrden(this.treApicultores.getPrimerNodo());</span>
+<span class="nc" id="L325">		ret.setTipoError(TipoError.OK);</span>
+<span class="nc" id="L326">		ret.setValorString(strApicultores);</span>
+		
+<span class="nc" id="L328">		return ret;</span>
+	}
+	
+	/**
+	 * Recorre un arbol de Apicultores y devuelve un String con los datos de los mismos, ordenado
+	 * de forma ascendente por su c�dula.
+	 * 
+	 * @param a Instancia de Apicultor.
+	 * 
+	 * @return Resultado del m�todo.
+	 * 
+	 */
+	private String getApicultoresInOrden(Apicultor a){
+<span class="nc" id="L341">		String ret = &quot;&quot;;</span>
+<span class="nc bnc" id="L342" title="All 2 branches missed.">		if(a != null){</span>
+<span class="nc" id="L343">		ret += getApicultoresInOrden(a.getMenor());</span>
+<span class="nc" id="L344">		ret += a.getCedula() + &quot;;&quot; + a.getNombre() + &quot;;&quot; + a.getCelular() + &quot;|&quot;;</span>
+<span class="nc" id="L345">		ret += getApicultoresInOrden(a.getMayor());</span>
+		}
+<span class="nc" id="L347">		return ret;</span>
 	}
 	/**
 	 * Registra un apiario de nombre nombre en el sistema, el cual está a cargo del apicultor de cédula
@@ -207,39 +358,39 @@
 	 */
 	public TipoRetorno registrarApiario(String nombre, double coordX, double coordY, int cedula_apicultor,
 			int capacidad){
-<span class="fc" id="L210">		TipoRetorno ret = new TipoRetorno();</span>
-<span class="fc" id="L211">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
-<span class="fc" id="L212">		Apicultor a = new Apicultor();</span>
-<span class="fc" id="L213">		a.setCedula(cedula_apicultor);</span>
-<span class="fc" id="L214">		a = treApicultores.existeApicultor(a, treApicultores.getPrimerNodo());</span>
-<span class="fc bfc" id="L215" title="All 2 branches covered.">		if (a != null){</span>
-<span class="fc" id="L216">			Apiario api = new Apiario(nombre, coordX, coordY, capacidad, a);</span>
-<span class="fc bfc" id="L217" title="All 2 branches covered.">			if (!existePunto(api)) {</span>
-<span class="fc" id="L218">				boolean aux = false;</span>
-<span class="fc" id="L219">				int i = 0;</span>
-<span class="fc bfc" id="L220" title="All 4 branches covered.">				while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
-<span class="fc bfc" id="L221" title="All 2 branches covered.">					if (arrPuntos[i] == null) {</span>
-<span class="fc" id="L222">						arrPuntos[i] = api;</span>
-<span class="fc" id="L223">						aux = true;</span>
-<span class="fc" id="L224">						ret.setTipoError(TipoError.OK);</span>
-<span class="pc bpc" id="L225" title="1 of 4 branches missed.">					} else if (arrPuntos[i].getCoordX() == api.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == api.getCoordY()) {</span>
-<span class="fc" id="L226">						ret.setTipoError(TipoError.ERROR_2);</span>
-<span class="fc" id="L227">						aux = true;</span>
+<span class="fc" id="L361">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L362">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
+<span class="fc" id="L363">		Apicultor a = new Apicultor();</span>
+<span class="fc" id="L364">		a.setCedula(cedula_apicultor);</span>
+<span class="fc" id="L365">		a = treApicultores.existeApicultor(a, treApicultores.getPrimerNodo());</span>
+<span class="fc bfc" id="L366" title="All 2 branches covered.">		if (a != null){</span>
+<span class="fc" id="L367">			Apiario api = new Apiario(nombre, coordX, coordY, capacidad, a);</span>
+<span class="fc bfc" id="L368" title="All 2 branches covered.">			if (!existePunto(api)) {</span>
+<span class="fc" id="L369">				boolean aux = false;</span>
+<span class="fc" id="L370">				int i = 0;</span>
+<span class="fc bfc" id="L371" title="All 4 branches covered.">				while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">					if (arrPuntos[i] == null) {</span>
+<span class="fc" id="L373">						arrPuntos[i] = api;</span>
+<span class="fc" id="L374">						aux = true;</span>
+<span class="fc" id="L375">						ret.setTipoError(TipoError.OK);</span>
+<span class="pc bpc" id="L376" title="1 of 4 branches missed.">					} else if (arrPuntos[i].getCoordX() == api.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == api.getCoordY()) {</span>
+<span class="fc" id="L377">						ret.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc" id="L378">						aux = true;</span>
 					}
-<span class="fc" id="L229">					i++;</span>
+<span class="fc" id="L380">					i++;</span>
 				}
-<span class="fc bfc" id="L231" title="All 2 branches covered.">				if (aux == false) {</span>
-<span class="fc" id="L232">					ret.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc bfc" id="L382" title="All 2 branches covered.">				if (aux == false) {</span>
+<span class="fc" id="L383">					ret.setTipoError(TipoError.ERROR_1);</span>
 				}
 			}
 			else{
-<span class="fc" id="L236">				ret.setTipoError(TipoError.ERROR_3);</span>
+<span class="fc" id="L387">				ret.setTipoError(TipoError.ERROR_3);</span>
 			}
 		}
 		else{
-<span class="fc" id="L240">			ret.setTipoError(TipoError.ERROR_4); //No existe apicultor.</span>
+<span class="fc" id="L391">			ret.setTipoError(TipoError.ERROR_4); //No existe apicultor.</span>
 		}
-<span class="fc" id="L242">		return ret;</span>
+<span class="fc" id="L393">		return ret;</span>
 	}
 	/**
 	 * Registra un centro de extracción de nombre &quot;nombre&quot; en el sistema, con una capacidad de extracción
@@ -251,31 +402,31 @@
 	 * @return Resultado del método.
 	 */
 	public TipoRetorno registrarCentro(String nombre, double coordX, double coordY, int capacidad){
-<span class="fc" id="L254">		TipoRetorno ret = new TipoRetorno();</span>
-<span class="fc" id="L255">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
-<span class="fc" id="L256">		CentroDeExtraccion c = new CentroDeExtraccion(nombre, coordX, coordY, capacidad);</span>
-<span class="fc bfc" id="L257" title="All 2 branches covered.">		if (!existePunto(c)) {</span>
-<span class="fc" id="L258">			boolean aux = false;</span>
-<span class="fc" id="L259">			int i = 0;</span>
-<span class="fc bfc" id="L260" title="All 4 branches covered.">			while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
-<span class="fc bfc" id="L261" title="All 2 branches covered.">				if (arrPuntos[i] == null) {</span>
-<span class="fc" id="L262">					arrPuntos[i] = c;</span>
-<span class="fc" id="L263">					aux = true;</span>
-<span class="fc" id="L264">					ret.setTipoError(TipoError.OK);</span>
-<span class="pc bpc" id="L265" title="1 of 4 branches missed.">				} else if (arrPuntos[i].getCoordX() == c.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == c.getCoordY()) {</span>
-<span class="fc" id="L266">					ret.setTipoError(TipoError.ERROR_2);</span>
-<span class="fc" id="L267">					aux = true;</span>
+<span class="fc" id="L405">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L406">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto.</span>
+<span class="fc" id="L407">		CentroDeExtraccion c = new CentroDeExtraccion(nombre, coordX, coordY, capacidad);</span>
+<span class="fc bfc" id="L408" title="All 2 branches covered.">		if (!existePunto(c)) {</span>
+<span class="fc" id="L409">			boolean aux = false;</span>
+<span class="fc" id="L410">			int i = 0;</span>
+<span class="fc bfc" id="L411" title="All 4 branches covered.">			while (aux == false &amp;&amp; i &lt; cantPuntos) {</span>
+<span class="fc bfc" id="L412" title="All 2 branches covered.">				if (arrPuntos[i] == null) {</span>
+<span class="fc" id="L413">					arrPuntos[i] = c;</span>
+<span class="fc" id="L414">					aux = true;</span>
+<span class="fc" id="L415">					ret.setTipoError(TipoError.OK);</span>
+<span class="pc bpc" id="L416" title="1 of 4 branches missed.">				} else if (arrPuntos[i].getCoordX() == c.getCoordX() &amp;&amp; arrPuntos[i].getCoordY() == c.getCoordY()) {</span>
+<span class="fc" id="L417">					ret.setTipoError(TipoError.ERROR_2);</span>
+<span class="fc" id="L418">					aux = true;</span>
 				}
-<span class="fc" id="L269">				i++;</span>
+<span class="fc" id="L420">				i++;</span>
 			}
-<span class="fc bfc" id="L271" title="All 2 branches covered.">			if (aux == false) {</span>
-<span class="fc" id="L272">				ret.setTipoError(TipoError.ERROR_1);</span>
+<span class="fc bfc" id="L422" title="All 2 branches covered.">			if (aux == false) {</span>
+<span class="fc" id="L423">				ret.setTipoError(TipoError.ERROR_1);</span>
 			}
 		}
 		else{
-<span class="fc" id="L276">			ret.setTipoError(TipoError.ERROR_3);</span>
+<span class="fc" id="L427">			ret.setTipoError(TipoError.ERROR_3);</span>
 		}
-<span class="fc" id="L278">		return ret;</span>
+<span class="fc" id="L429">		return ret;</span>
 	}
 	
 	/**
@@ -286,12 +437,79 @@
 	 * @param coordXf Coordenada para el eje X final.
 	 * @param coordYf Coordenada para el eje Y final.
 	 * @param peso Kilómetros del tramo.
-	 * @return
+	 * @return Resultado del método.
 	 */
 	public TipoRetorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int peso){
-<span class="nc" id="L292">		TipoRetorno ret = new TipoRetorno();</span>
-<span class="nc" id="L293">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto.</span>
-<span class="nc" id="L294">		return ret;</span>
+<span class="fc" id="L443">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L444">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto.</span>
+<span class="fc" id="L445">		Punto pInicio = getPuntoByCoords(coordXi, coordYi);</span>
+<span class="fc" id="L446">		Punto pFinal = getPuntoByCoords(coordXf, coordYf);</span>
+<span class="fc bfc" id="L447" title="All 2 branches covered.">		if(peso &gt; 0){</span>
+<span class="fc bfc" id="L448" title="All 4 branches covered.">			if (pInicio != null &amp;&amp; pFinal != null){</span>
+<span class="fc" id="L449">				Tramo t = new Tramo(pInicio, pFinal, peso, null);</span>
+<span class="fc bfc" id="L450" title="All 2 branches covered.">				if(!lstTramos.existeTramo(t)){</span>
+<span class="fc" id="L451">					lstTramos.agregarTramo(t);</span>
+<span class="fc" id="L452">					ret.setTipoError(TipoError.OK);</span>
+				}
+				else{
+<span class="fc" id="L455">					ret.setTipoError(TipoError.ERROR_3);//Ya existe el tramo.</span>
+				}
+			} else {
+<span class="fc" id="L458">				ret.setTipoError(TipoError.ERROR_2); //No existe uno o ambos puntos.</span>
+			}
+		}
+		else{
+<span class="fc" id="L462">			ret.setTipoError(TipoError.ERROR_1);</span>
+		}
+<span class="fc" id="L464">		return ret;</span>
+	}
+	/**
+	 * Obtiene un Punto dadas sus coordenadas.
+	 * @param coordX Coordenada del punto para el eje X.
+	 * @param coordY Coordenada del punto para el eje Y.
+	 * @return Punto ubicado en las coordenadas dadas, null si el punto no existe.
+	 */
+	public Punto getPuntoByCoords(double coordX, double coordY){
+<span class="fc" id="L473">		Punto p = null;</span>
+<span class="fc" id="L474">		int i = 0;</span>
+<span class="fc bfc" id="L475" title="All 4 branches covered.">			while (p == null &amp;&amp; i &lt; cantPuntos){</span>
+<span class="pc bpc" id="L476" title="1 of 4 branches missed.">				if(arrPuntos[i].getCoordX() == coordX &amp;&amp; arrPuntos[i].getCoordY() == coordY){</span>
+<span class="fc" id="L477">					p = arrPuntos[i];</span>
+				}
+<span class="fc" id="L479">				i++;</span>
+			}
+<span class="fc" id="L481">		return p;</span>
+	}
+	/**
+	 * Genera la cadena para un mapa de Google Maps que muestre todos los puntos registrados en el sistema (apiarios,
+	 * ciudades y centros de extracción.
+	 * Para diferenciarlos, mostrará las ciudades en rojo, los centros de extracción en verde y los centros de
+	 * extracción en amarillo.
+	 * @return
+	 */
+	public TipoRetorno mapaEstado(){
+<span class="fc" id="L491">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="fc" id="L492">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Retorno por defecto</span>
+<span class="fc" id="L493">		int i = 0;</span>
+<span class="fc" id="L494">		String aux = &quot;&quot;;</span>
+<span class="pc bpc" id="L495" title="1 of 2 branches missed.">		if(arrPuntos[0] != null){</span>
+<span class="fc" id="L496">			aux = &quot;http://maps.googleapis.com/maps/api/staticmap?center=-34.9054885,-54.9636822&amp;zoom=13&amp;size=640x640&amp;maptype=roadmap&quot;;</span>
+<span class="pc bpc" id="L497" title="1 of 4 branches missed.">			while (i &lt; cantPuntos &amp;&amp; arrPuntos[i] != null){</span>
+<span class="fc bfc" id="L498" title="All 2 branches covered.">				if(arrPuntos[i].getClass().equals(Ciudad.class)){</span>
+<span class="fc" id="L499">					aux += &quot;&amp;markers=color:red%7Clabel:C%7C&quot;+arrPuntos[i].getCoordX()+&quot;,&quot;+arrPuntos[i].getCoordY();</span>
+				}
+<span class="fc bfc" id="L501" title="All 2 branches covered.">				else if(arrPuntos[i].getClass().equals(CentroDeExtraccion.class)){</span>
+<span class="fc" id="L502">					aux += &quot;&amp;markers=color:green%7Clabel:E%7C&quot;+arrPuntos[i].getCoordX()+&quot;,&quot;+arrPuntos[i].getCoordY();</span>
+				}
+<span class="pc bpc" id="L504" title="1 of 2 branches missed.">				else if(arrPuntos[i].getClass().equals(Apiario.class)){</span>
+<span class="fc" id="L505">					aux += &quot;&amp;markers=color:yellow%7Clabel:A%7C&quot;+arrPuntos[i].getCoordX()+&quot;,&quot;+arrPuntos[i].getCoordY();</span>
+				}
+<span class="fc" id="L507">				i++;</span>
+			}
+		}
+<span class="fc" id="L510">		ret.setTipoError(TipoError.OK);</span>
+<span class="fc" id="L511">		ret.setValorString(aux);</span>
+<span class="fc" id="L512">		return ret;</span>
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 18:18:58)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 0:28:10)</div></body></html>
