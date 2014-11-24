@@ -38,6 +38,7 @@ public class ListarApiarios {
 				String textoEsperado = "-34.25;-54.97|-25.63;-36.99|-17.897;-36.54|-99.87452;-57.6698|";
 				ret = Sistema.getInstancia().listadoDeApiariosEnCiudad(-45.90, -53.88);
 				assertEquals("Listado de Apiarios alcanzables en 20 km de recorrido desde Ciudad_1", TipoError.OK, ret.getTipoError());
+				System.out.println(ret.getValorString());
 				assertEquals("String conteniendo los Apiarios", textoEsperado, ret.getValorString());
 	}
 

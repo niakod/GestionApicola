@@ -207,31 +207,32 @@ public class Sistema {
 	public TipoRetorno listadoDeApiariosEnCiudad(Double coordX, Double coordY) {
 		TipoRetorno ret = new TipoRetorno();
 		ret.setTipoError(TipoError.NO_IMPLEMENTADA); // Retorno por defecto.
-		
 		//Se crea una instancia de punto con las coordenadas recibidas como parametro.
-		Punto p = new Punto();
-		p.setCoordX(coordX);
-		p.setCoordY(coordY);
-		//Se crea una lista auxiliar de tramos, en la que se guardan los que tengan un peso menor a 20.
-		ListaTramos lstAux = new ListaTramos();
-		Tramo t = lstTramos.getPrimerTramo();
-		if (t != null && t.getPeso() <= 20) {
-			lstAux.agregarTramo(t);
-		}
-		while(t.getSiguiente() != null){
-			t = t.getSiguiente();
-			if(t.getPeso() <= 20){
-				lstAux.agregarTramo(t);
+		Punto p = getPuntoByCoords(coordX, coordY);
+		if (p != null){
+			//Se crea una lista auxiliar de tramos, en la que se guardan los que tengan un peso menor a 20.
+			ListaTramos lstAux = new ListaTramos();
+			Tramo t = lstTramos.getPrimerTramo();
+			if (t != null && t.getPeso() <= 20) {
+				Tramo ta = (Tramo)t.clone();
+				ta.setSiguiente(null);
+				lstAux.agregarTramo(ta);
 			}
+			while(t.getSiguiente() != null){
+				t = t.getSiguiente();
+				if(t.getPeso() <= 20){
+					Tramo ta = (Tramo)t.clone();
+					ta.setSiguiente(null);
+					lstAux.agregarTramo(ta);
+				}
+			}
+			String strApiarios = "";
+			strApiarios = listarApiarios(lstAux, strApiarios, 0, p);
+		
+			ret.setTipoError(TipoError.OK);
+			ret.setValorString(strApiarios);
 		}
-		String strApiarios = "";
-		strApiarios = listarApiarios(lstAux, strApiarios, 0, p);
-		
-		ret.setTipoError(TipoError.OK);
-		ret.setValorString(strApiarios);
-		
 		return ret;
-		
 	}
 	
 	/**
@@ -250,10 +251,10 @@ public class Sistema {
 	 * 		punto de origen del tramo que se evalua.
 	 * @return Resultado del m�todo.
 	 */
-	private String listarApiarios(ListaTramos lst, String lista, int distanciaParcial,
-			Punto punto) {
+	private String listarApiarios(ListaTramos lst, String strlista, int distanciaParcial,	Punto punto) {
+		String lista = strlista;
 		Tramo t = lst.getPrimerTramo();
-		if (t.getPeso() + distanciaParcial <= 20) {
+		if ((t.getPeso() + distanciaParcial) <= 20) {
 			if (t.getPuntoI().getCoordX() == punto.getCoordX()
 					&& t.getPuntoI().getCoordY() == punto.getCoordY()) {
 				if (t.getPuntoF().getClass().equals(Apiario.class)) {
@@ -271,7 +272,6 @@ public class Sistema {
 				if (t.getPuntoI().getClass().equals(Apiario.class)) {
 					lista += t.getPuntoI().getCoordX() + ";"
 							+ t.getPuntoI().getCoordY() + "|";
-
 				}
 				if (t.getSiguiente() != null) {
 					Tramo tAux = t.getSiguiente();
@@ -279,7 +279,6 @@ public class Sistema {
 					lista = listarApiarios(lst, lista,
 							tAux.getPeso(), tAux.getPuntoI());
 				}
-
 			}
 		}
 		if(t.getSiguiente() != null){

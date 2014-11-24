@@ -4,7 +4,7 @@ package Dominio;
  * Un Tramo une dos Puntos y tiene un peso. <br/>
  * Nodo de ListaTramos.
  */
-public class Tramo {
+public class Tramo implements Cloneable{
 	/**
 	 * Punto inicial del tramo.
 	 */
@@ -30,7 +30,15 @@ public class Tramo {
 	public Punto getPuntoI() {
 		return puntoI;
 	}
-
+	public Object clone(){
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return obj;
+    }
 	/**
 	 * Establece el punto de inicio del tramo.
 	 * 

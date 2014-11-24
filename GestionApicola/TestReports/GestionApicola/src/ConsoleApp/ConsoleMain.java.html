@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ConsoleMain.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (23-nov-2014 18:18:58)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">ConsoleApp</a> &gt; <span class="el_source">ConsoleMain.java</span></div><h1>ConsoleMain.java</h1><pre class="source lang-java linenums">package ConsoleApp;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ConsoleMain.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">JUnitTests (24-nov-2014 13:30:31)</a> &gt; <a href="../../index.html" class="el_group">GestionApicola</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">ConsoleApp</a> &gt; <span class="el_source">ConsoleMain.java</span></div><h1>ConsoleMain.java</h1><pre class="source lang-java linenums">package ConsoleApp;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,63 +14,93 @@ import Dominio.TipoRetorno;
 /**
  * Interfaz de usuario, consola.
  */
-<span class="nc" id="L14">public class ConsoleMain {</span>
-<span class="nc" id="L15">	private static int intOptMenu = 0; // Opción para el menú de la aplicación.</span>
+<span class="pc" id="L17">public class ConsoleMain {</span>
+<span class="fc" id="L18">	private static int intOptMenu = 0; // Opción para el menú de la aplicación.</span>
 
 	/**
 	 * Metodo principal de la aplicacion.
 	 * 
 	 * @param args
 	 * @throws IOException
+	 * @throws URISyntaxException 
 	 */
-	public static void main(String[] args) throws IOException {
-<span class="nc" id="L24">		Scanner scan = new Scanner(System.in);</span>
-<span class="nc" id="L25">		System.out.println(&quot;          __&quot;);</span>
-<span class="nc" id="L26">		System.out.println(&quot;         // \\                            _ _  __&quot;);</span>
-<span class="nc" id="L27">		System.out</span>
-<span class="nc" id="L28">				.println(&quot;         \\\\_/ //                        ( | )/_/&quot;);</span>
-<span class="nc" id="L29">		System.out.println(&quot;'-.._.. -(||)(')   GESTIÓN APICOLA   __( &gt;O&lt; )&quot;);</span>
-<span class="nc" id="L30">		System.out.println(&quot;         ´´´                         \\_\\( | )&quot;);</span>
-<span class="nc" id="L31">		System.out.println(&quot;                                         ¯ ¯&quot;);</span>
+	public static void main(String[] args) throws IOException, URISyntaxException {
+<span class="nc" id="L28">		Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L29">		System.out.println(&quot;          __&quot;);</span>
+<span class="nc" id="L30">		System.out.println(&quot;         // \\                            _ _  __&quot;);</span>
+<span class="nc" id="L31">		System.out</span>
+<span class="nc" id="L32">				.println(&quot;         \\\\_/ //                        ( | )/_/&quot;);</span>
+<span class="nc" id="L33">		System.out.println(&quot;'-.._.. -(||)(')   GESTIÓN APICOLA   __( &gt;O&lt; )&quot;);</span>
+<span class="nc" id="L34">		System.out.println(&quot;         ´´´                         \\_\\( | )&quot;);</span>
+<span class="nc" id="L35">		System.out.println(&quot;                                         ¯ ¯&quot;);</span>
 		try {
 			do {
-<span class="nc" id="L34">				showMenu(); // Muestra el menú de opciones.</span>
-<span class="nc" id="L35">				intOptMenu = scan.nextInt();</span>
-<span class="nc bnc" id="L36" title="All 6 branches missed.">				switch (intOptMenu) {</span>
+<span class="nc" id="L38">				showMenu(); // Muestra el menú de opciones.</span>
+<span class="nc" id="L39">				intOptMenu = scan.nextInt();</span>
+<span class="nc bnc" id="L40" title="All 13 branches missed.">				switch (intOptMenu) {</span>
 				case 1:
-<span class="nc" id="L38">					inicializarSistema(scan);</span>
-<span class="nc" id="L39">					break;</span>
+<span class="nc" id="L42">					inicializarSistema(scan);</span>
+<span class="nc" id="L43">					break;</span>
 				case 2:
-<span class="nc" id="L41">					destruirSistema();</span>
-<span class="nc" id="L42">					break;</span>
+<span class="nc" id="L45">					destruirSistema();</span>
+<span class="nc" id="L46">					break;</span>
 				case 3:
-<span class="nc" id="L44">					registrarApicultor(scan);</span>
-<span class="nc" id="L45">					break;</span>
+<span class="nc" id="L48">					registrarApicultor(scan);</span>
+<span class="nc" id="L49">					break;</span>
 				case 4:
-<span class="nc" id="L47">					registrarCiudad(scan);</span>
-<span class="nc" id="L48">					break;</span>
+<span class="nc" id="L51">					registrarCiudad(scan);</span>
+<span class="nc" id="L52">					break;</span>
 				case 5:
-<span class="nc" id="L50">					registrarApiario(scan);</span>
+<span class="nc" id="L54">					registrarApiario(scan);</span>
+<span class="nc" id="L55">					break;</span>
+				case 6:
+<span class="nc" id="L57">					registrarCentro(scan);</span>
+<span class="nc" id="L58">					break;</span>
+				case 7: 
+<span class="nc" id="L60">					registrarTramo(scan);</span>
+<span class="nc" id="L61">					break;</span>
+				case 8:
+<span class="nc" id="L63">					mostrarMapa();</span>
+<span class="nc" id="L64">					break;</span>
+				case 9:
+<span class="nc" id="L66">					mejorRuta(scan);</span>
+<span class="nc" id="L67">					break;</span>
+				case 10:
+<span class="nc" id="L69">					listarApiariosCiudad(scan);</span>
+<span class="nc" id="L70">					break;</span>
+				case 11:
+<span class="nc" id="L72">					listarCentros();</span>
+<span class="nc" id="L73">					break;</span>
+				case 12:
+<span class="nc" id="L75">					listarApicultores();</span>
 					break;
 				}
-<span class="nc bnc" id="L53" title="All 2 branches missed.">			} while (intOptMenu != 0);</span>
-<span class="nc" id="L54">		} catch (InputMismatchException ime) {</span>
-<span class="nc" id="L55">			System.out.println(&quot;Debe ingresar un número entero.&quot;);</span>
+				
+<span class="nc bnc" id="L79" title="All 2 branches missed.">			} while (intOptMenu != 0);</span>
+<span class="nc" id="L80">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L81">			System.out.println(&quot;Debe ingresar un número entero.&quot;);</span>
 		}
-<span class="nc" id="L57">	}</span>
+<span class="nc" id="L83">	}</span>
 
 	/**
 	 * Muestra en consola el menú de opciones de la aplicación.
 	 */
 	private static void showMenu() {
-<span class="nc" id="L63">		System.out.println(&quot;Ingrese la opción deseada:&quot;);</span>
-<span class="nc" id="L64">		System.out.println(&quot;1 - Inicializar el sistema.&quot;);</span>
-<span class="nc" id="L65">		System.out.println(&quot;2 - Destruir sistema.&quot;);</span>
-<span class="nc" id="L66">		System.out.println(&quot;3 - Registrar Apicultor.&quot;);</span>
-<span class="nc" id="L67">		System.out.println(&quot;4 - Registrar Ciudad.&quot;);</span>
-<span class="nc" id="L68">		System.out.println(&quot;5 - Registrar Apiario&quot;);</span>
-<span class="nc" id="L69">		System.out.println(&quot;0 - Salir de la aplicación.&quot;);</span>
-<span class="nc" id="L70">	}</span>
+<span class="nc" id="L89">		System.out.println(&quot;Ingrese la opción deseada:&quot;);</span>
+<span class="nc" id="L90">		System.out.println(&quot;1 - Inicializar el sistema.&quot;);</span>
+<span class="nc" id="L91">		System.out.println(&quot;2 - Destruir sistema.&quot;);</span>
+<span class="nc" id="L92">		System.out.println(&quot;3 - Registrar Apicultor.&quot;);</span>
+<span class="nc" id="L93">		System.out.println(&quot;4 - Registrar Ciudad.&quot;);</span>
+<span class="nc" id="L94">		System.out.println(&quot;5 - Registrar Apiario&quot;);</span>
+<span class="nc" id="L95">		System.out.println(&quot;6 - Registrar Centro&quot;);</span>
+<span class="nc" id="L96">		System.out.println(&quot;7 - Registrar Tramo&quot;);</span>
+<span class="nc" id="L97">		System.out.println(&quot;8 - Mostrar mapa de estado&quot;);</span>
+<span class="nc" id="L98">		System.out.println(&quot;9 - Mejor ruta a centro de extracción&quot;);</span>
+<span class="nc" id="L99">		System.out.println(&quot;10 - Listado de apiarios en ciudad&quot;);</span>
+<span class="nc" id="L100">		System.out.println(&quot;11 - Listado de centros de extracción&quot;);</span>
+<span class="nc" id="L101">		System.out.println(&quot;12 - Listado de apicultores&quot;);</span>
+<span class="nc" id="L102">		System.out.println(&quot;0 - Salir de la aplicación.&quot;);</span>
+<span class="nc" id="L103">	}</span>
 
 	/**
 	 * Inicializa el sistema.
@@ -78,23 +111,23 @@ import Dominio.TipoRetorno;
 	 * @throws IOException
 	 */
 	private static void inicializarSistema(Scanner s) throws IOException {
-<span class="nc" id="L81">		System.out</span>
-<span class="nc" id="L82">				.println(&quot;Ingrese la cantidad máxima de puntos que soportará el sistema:&quot;);</span>
+<span class="nc" id="L114">		System.out</span>
+<span class="nc" id="L115">				.println(&quot;Ingrese la cantidad máxima de puntos que soportará el sistema:&quot;);</span>
 		try {
-<span class="nc" id="L84">			int cp = s.nextInt();</span>
-<span class="nc" id="L85">			TipoRetorno ret = Sistema.getInstancia().inicializarSistema(cp);</span>
-<span class="nc" id="L86">			System.out.println(ret.getTipoError().toString());</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">			if (ret.getTipoError() == TipoError.ERROR_1) {</span>
-<span class="nc" id="L88">				System.out</span>
-<span class="nc" id="L89">						.println(&quot;La cantidad máxima de puntos debe ser mayor a cero.&quot;);</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">			} else if (ret.getTipoError() == TipoError.ERROR_2) {</span>
-<span class="nc" id="L91">				System.out.println(&quot;Debe destruír el sistema actual primero.&quot;);</span>
+<span class="nc" id="L117">			int cp = s.nextInt();</span>
+<span class="nc" id="L118">			TipoRetorno ret = Sistema.getInstancia().inicializarSistema(cp);</span>
+<span class="nc" id="L119">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">			if (ret.getTipoError() == TipoError.ERROR_1) {</span>
+<span class="nc" id="L121">				System.out</span>
+<span class="nc" id="L122">						.println(&quot;La cantidad máxima de puntos debe ser mayor a cero.&quot;);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">			} else if (ret.getTipoError() == TipoError.ERROR_2) {</span>
+<span class="nc" id="L124">				System.out.println(&quot;Debe destruír el sistema actual primero.&quot;);</span>
 			}
-<span class="nc" id="L93">		} catch (InputMismatchException ime) {</span>
-<span class="nc" id="L94">			System.out.println(&quot;Debe ingresar un número entero&quot;);</span>
+<span class="nc" id="L126">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L127">			System.out.println(&quot;Debe ingresar un número entero&quot;);</span>
 		}
-<span class="nc" id="L96">		System.in.read();</span>
-<span class="nc" id="L97">	}</span>
+<span class="nc" id="L129">		System.in.read();</span>
+<span class="nc" id="L130">	}</span>
 
 	/**
 	 * Destruye el sistema.
@@ -102,14 +135,14 @@ import Dominio.TipoRetorno;
 	 * @throws IOException
 	 */
 	private static void destruirSistema() throws IOException {
-<span class="nc" id="L105">		TipoRetorno ret = Sistema.getInstancia().destruirSistema();</span>
-<span class="nc" id="L106">		System.out.println(ret.getTipoError().toString());</span>
-<span class="nc bnc" id="L107" title="All 2 branches missed.">		if (ret.getTipoError() == TipoError.ERROR_1) {</span>
-<span class="nc" id="L108">			System.out</span>
-<span class="nc" id="L109">					.println(&quot;No se ha inicializado el sistema, por lo que no puede destruirse.&quot;);</span>
+<span class="nc" id="L138">		TipoRetorno ret = Sistema.getInstancia().destruirSistema();</span>
+<span class="nc" id="L139">		System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">		if (ret.getTipoError() == TipoError.ERROR_1) {</span>
+<span class="nc" id="L141">			System.out</span>
+<span class="nc" id="L142">					.println(&quot;No se ha inicializado el sistema, por lo que no puede destruirse.&quot;);</span>
 		}
-<span class="nc" id="L111">		System.in.read();</span>
-<span class="nc" id="L112">	}</span>
+<span class="nc" id="L144">		System.in.read();</span>
+<span class="nc" id="L145">	}</span>
 
 	/**
 	 * Registra un nuevo apicultor en el sistema.
@@ -127,30 +160,30 @@ import Dominio.TipoRetorno;
 		String celular;
 		try {
 			// Ingreso de datos por parte del usuario:
-<span class="nc" id="L130">			System.out.println(&quot;Ingrese la cédula (sin puntos ni guión):&quot;);</span>
-<span class="nc" id="L131">			cedula = s.nextInt();</span>
-<span class="nc" id="L132">			System.out.println(&quot;Ingrese el nombre:&quot;);</span>
-<span class="nc" id="L133">			nombre = s.nextLine();</span>
-<span class="nc" id="L134">			System.out.println(&quot;Ingrese la dirección:&quot;);</span>
-<span class="nc" id="L135">			direccion = s.nextLine();</span>
-<span class="nc" id="L136">			System.out.println(&quot;Ingrese la dirección de correo electrónico:&quot;);</span>
-<span class="nc" id="L137">			email = s.nextLine();</span>
-<span class="nc" id="L138">			System.out.println(&quot;Ingrese el celular:&quot;);</span>
-<span class="nc" id="L139">			celular = s.nextLine();</span>
+<span class="nc" id="L163">			System.out.println(&quot;Ingrese la cédula (sin puntos ni guión):&quot;);</span>
+<span class="nc" id="L164">			cedula = s.nextInt();</span>
+<span class="nc" id="L165">			System.out.println(&quot;Ingrese el nombre:&quot;);</span>
+<span class="nc" id="L166">			nombre = s.nextLine();</span>
+<span class="nc" id="L167">			System.out.println(&quot;Ingrese la dirección:&quot;);</span>
+<span class="nc" id="L168">			direccion = s.nextLine();</span>
+<span class="nc" id="L169">			System.out.println(&quot;Ingrese la dirección de correo electrónico:&quot;);</span>
+<span class="nc" id="L170">			email = s.nextLine();</span>
+<span class="nc" id="L171">			System.out.println(&quot;Ingrese el celular:&quot;);</span>
+<span class="nc" id="L172">			celular = s.nextLine();</span>
 			// Agregar nuevo apicultor al sistema:
-<span class="nc" id="L141">			TipoRetorno ret = Sistema.getInstancia().registrarApicultor(cedula,</span>
-<span class="nc" id="L142">					nombre, direccion, email, celular);</span>
+<span class="nc" id="L174">			TipoRetorno ret = Sistema.getInstancia().registrarApicultor(cedula,</span>
+<span class="nc" id="L175">					nombre, direccion, email, celular);</span>
 			// Resultado la funcionalidad:
-<span class="nc" id="L144">			System.out.println(ret.getTipoError().toString());</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">			if (ret.getTipoError() == TipoError.ERROR_1) {</span>
-<span class="nc" id="L146">				System.out.println(&quot;Ya existe un apicultor con la cédula &quot;</span>
-<span class="nc" id="L147">						+ cedula + &quot; registrado en el sistema.&quot;);</span>
+<span class="nc" id="L177">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">			if (ret.getTipoError() == TipoError.ERROR_1) {</span>
+<span class="nc" id="L179">				System.out.println(&quot;Ya existe un apicultor con la cédula &quot;</span>
+<span class="nc" id="L180">						+ cedula + &quot; registrado en el sistema.&quot;);</span>
 			}
-<span class="nc" id="L149">			System.in.read();</span>
-<span class="nc" id="L150">		} catch (InputMismatchException ime) {</span>
-<span class="nc" id="L151">			System.out.println(&quot;Debe ingresar la cédula sin puntos ni guión.&quot;);</span>
+<span class="nc" id="L182">			System.in.read();</span>
+<span class="nc" id="L183">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L184">			System.out.println(&quot;Debe ingresar la cédula sin puntos ni guión.&quot;);</span>
 		}
-<span class="nc" id="L153">	}</span>
+<span class="nc" id="L186">	}</span>
 	/**
 	 * Registra una nueva ciudad en el sistema
 	 * @param s Scanner para leer los datos ingresados por el usuario en la consola.
@@ -158,65 +191,210 @@ import Dominio.TipoRetorno;
 	 */
 	private static void registrarCiudad(Scanner s) throws IOException {
 		try {
-<span class="nc" id="L161">			System.out.println(&quot;Ingrese el nombre de la ciudad:&quot;);</span>
-<span class="nc" id="L162">			String nombre = s.nextLine();</span>
-<span class="nc" id="L163">			System.out.println(&quot;Ingrese la coordenada para el eje x:&quot;);</span>
-<span class="nc" id="L164">			double x = s.nextDouble();</span>
-<span class="nc" id="L165">			System.out.println(&quot;Ingrese la coordenada para el eje y;&quot;);</span>
-<span class="nc" id="L166">			double y = s.nextDouble();</span>
-<span class="nc" id="L167">			TipoRetorno ret = Sistema.getInstancia().registrarCiudad(nombre, x, y);</span>
-<span class="nc" id="L168">			System.out.println(ret.getTipoError().toString());</span>
-<span class="nc bnc" id="L169" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
-<span class="nc" id="L170">				System.out.println(&quot;No se pueden registrar más puntos en el sistema.&quot;);</span>
+<span class="nc" id="L194">			System.out.println(&quot;Ingrese el nombre de la ciudad:&quot;);</span>
+<span class="nc" id="L195">			String nombre = s.nextLine();</span>
+<span class="nc" id="L196">			System.out.println(&quot;Ingrese la coordenada para el eje x:&quot;);</span>
+<span class="nc" id="L197">			double x = s.nextDouble();</span>
+<span class="nc" id="L198">			System.out.println(&quot;Ingrese la coordenada para el eje y;&quot;);</span>
+<span class="nc" id="L199">			double y = s.nextDouble();</span>
+<span class="nc" id="L200">			TipoRetorno ret = Sistema.getInstancia().registrarCiudad(nombre, x, y);</span>
+<span class="nc" id="L201">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
+<span class="nc" id="L203">				System.out.println(&quot;No se pueden registrar más puntos en el sistema.&quot;);</span>
 			}
-<span class="nc bnc" id="L172" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
-<span class="nc" id="L173">				System.out.println(&quot;Ya existe un punto en el sistema en las coordenadas&quot; +y+&quot;,&quot;+x+&quot;.&quot;);</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
+<span class="nc" id="L206">				System.out.println(&quot;Ya existe un punto en el sistema en las coordenadas&quot; +y+&quot;,&quot;+x+&quot;.&quot;);</span>
 			}
-<span class="nc bnc" id="L175" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
-<span class="nc" id="L176">				System.out.println(&quot;Ya existe un punto en el sistema con el nombre&quot;+nombre+&quot;.&quot;);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
+<span class="nc" id="L209">				System.out.println(&quot;Ya existe un punto en el sistema con el nombre&quot;+nombre+&quot;.&quot;);</span>
 			}
-<span class="nc" id="L178">			System.in.read();</span>
-<span class="nc" id="L179">		} catch (InputMismatchException ime) {</span>
-<span class="nc" id="L180">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
+<span class="nc" id="L211">			System.in.read();</span>
+<span class="nc" id="L212">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L213">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
 		}
-<span class="nc" id="L182">	}</span>
+<span class="nc" id="L215">	}</span>
 	/**
 	 * Registra un nuevo apiario en el sistema.
 	 * @param s Scanner para leer datos ingresados por el usuario.
 	 * @throws IOException
 	 */
 	private static void registrarApiario(Scanner s) throws IOException{
-<span class="nc" id="L189">		TipoRetorno ret = new TipoRetorno();</span>
-<span class="nc" id="L190">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto</span>
+<span class="nc" id="L222">		TipoRetorno ret = new TipoRetorno();</span>
+<span class="nc" id="L223">		ret.setTipoError(TipoError.NO_IMPLEMENTADA); //Por defecto</span>
 		try {
-<span class="nc" id="L192">			System.out.println(&quot;Ingrese el nombre del Apiario&quot;);</span>
-<span class="nc" id="L193">			String nombre = s.nextLine();</span>
-<span class="nc" id="L194">			System.out.println(&quot;Ingrese la coordenada para el eje x:&quot;);</span>
-<span class="nc" id="L195">			double x = s.nextDouble();</span>
-<span class="nc" id="L196">			System.out.println(&quot;Ingrese la coordenada para el eje y;&quot;);</span>
-<span class="nc" id="L197">			double y = s.nextDouble();</span>
-<span class="nc" id="L198">			System.out.println(&quot;Ingrese la cédula del apicultor:&quot;);</span>
-<span class="nc" id="L199">			int cedula = s.nextInt();</span>
-<span class="nc" id="L200">			System.out.println(&quot;Ingrese la capacidad en litros por mes:&quot;);</span>
-<span class="nc" id="L201">			int capacidad = s.nextInt();</span>
-<span class="nc" id="L202">			ret = Sistema.getInstancia().registrarApiario(nombre, x, y, cedula, capacidad);</span>
-<span class="nc bnc" id="L203" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
-<span class="nc" id="L204">				System.out.println(&quot;No se pueden registrar más puntos en el sistema.&quot;);</span>
+<span class="nc" id="L225">			System.out.println(&quot;Ingrese el nombre del Apiario&quot;);</span>
+<span class="nc" id="L226">			String nombre = s.nextLine();</span>
+<span class="nc" id="L227">			System.out.println(&quot;Ingrese la coordenada para el eje x:&quot;);</span>
+<span class="nc" id="L228">			double x = s.nextDouble();</span>
+<span class="nc" id="L229">			System.out.println(&quot;Ingrese la coordenada para el eje y;&quot;);</span>
+<span class="nc" id="L230">			double y = s.nextDouble();</span>
+<span class="nc" id="L231">			System.out.println(&quot;Ingrese la cédula del apicultor:&quot;);</span>
+<span class="nc" id="L232">			int cedula = s.nextInt();</span>
+<span class="nc" id="L233">			System.out.println(&quot;Ingrese la capacidad en litros por mes:&quot;);</span>
+<span class="nc" id="L234">			int capacidad = s.nextInt();</span>
+<span class="nc" id="L235">			ret = Sistema.getInstancia().registrarApiario(nombre, x, y, cedula, capacidad);</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
+<span class="nc" id="L237">				System.out.println(&quot;No se pueden registrar más puntos en el sistema.&quot;);</span>
 			}
-<span class="nc bnc" id="L206" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
-<span class="nc" id="L207">				System.out.println(&quot;Ya existe un punto en el sistema en las coordenadas&quot; +y+&quot;,&quot;+x+&quot;.&quot;);</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
+<span class="nc" id="L240">				System.out.println(&quot;Ya existe un punto en el sistema en las coordenadas&quot; +y+&quot;,&quot;+x+&quot;.&quot;);</span>
 			}
-<span class="nc bnc" id="L209" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
-<span class="nc" id="L210">				System.out.println(&quot;Ya existe un punto en el sistema con el nombre&quot;+nombre+&quot;.&quot;);</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
+<span class="nc" id="L243">				System.out.println(&quot;Ya existe un punto en el sistema con el nombre&quot;+nombre+&quot;.&quot;);</span>
 			}
-<span class="nc bnc" id="L212" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_4){</span>
-<span class="nc" id="L213">				System.out.println(&quot;La cédula ingresada no coincide con ningún apicultor registrado en el sistema.&quot;);</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_4){</span>
+<span class="nc" id="L246">				System.out.println(&quot;La cédula ingresada no coincide con ningún apicultor registrado en el sistema.&quot;);</span>
 			}
-<span class="nc" id="L215">			System.in.read();</span>
+<span class="nc" id="L248">			System.in.read();</span>
 		}
-<span class="nc" id="L217">		catch(InputMismatchException ime){</span>
-<span class="nc" id="L218">			System.out.println(&quot;Las coordenadas, la cédula del apicultor y la capacidad deben estar en un formato númerico.&quot;);</span>
+<span class="nc" id="L250">		catch(InputMismatchException ime){</span>
+<span class="nc" id="L251">			System.out.println(&quot;Las coordenadas, la cédula del apicultor y la capacidad deben estar en un formato númerico.&quot;);</span>
 		}
-<span class="nc" id="L220">	}</span>
+<span class="nc" id="L253">	}</span>
+	/**
+	 * Registra un nuevo centro de extracción.
+	 * @param s Scanner para leer datos ingresados por el usuario.
+	 * @throws IOException
+	 */
+	private static void registrarCentro(Scanner s) throws IOException {
+		try {
+<span class="nc" id="L261">			System.out.println(&quot;Ingrese el nombre del centro:&quot;);</span>
+<span class="nc" id="L262">			String nombre = s.nextLine();</span>
+<span class="nc" id="L263">			System.out.println(&quot;Ingrese la coordenada para el eje x:&quot;);</span>
+<span class="nc" id="L264">			double x = s.nextDouble();</span>
+<span class="nc" id="L265">			System.out.println(&quot;Ingrese la coordenada para el eje y;&quot;);</span>
+<span class="nc" id="L266">			double y = s.nextDouble();</span>
+<span class="nc" id="L267">			System.out.println(&quot;Ingrese la capacidad del centro en litros de miel por mes:&quot;);</span>
+<span class="nc" id="L268">			int capacidad = s.nextInt();</span>
+<span class="nc" id="L269">			TipoRetorno ret = Sistema.getInstancia().registrarCentro(nombre, x, y, capacidad);</span>
+<span class="nc" id="L270">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
+<span class="nc" id="L272">				System.out.println(&quot;No se pueden registrar más puntos en el sistema.&quot;);</span>
+			}
+<span class="nc bnc" id="L274" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
+<span class="nc" id="L275">				System.out.println(&quot;Ya existe un punto en el sistema en las coordenadas&quot; +y+&quot;,&quot;+x+&quot;.&quot;);</span>
+			}
+<span class="nc bnc" id="L277" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
+<span class="nc" id="L278">				System.out.println(&quot;Ya existe un punto en el sistema con el nombre&quot;+nombre+&quot;.&quot;);</span>
+			}
+<span class="nc" id="L280">			System.in.read();</span>
+<span class="nc" id="L281">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L282">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
+		}
+<span class="nc" id="L284">	}</span>
+	/**
+	 * Registra un nuevo tramo.
+	 * @param s Scanner para leer los datos ingresados por el usuario.
+	 * @throws IOException
+	 */
+	private static void registrarTramo(Scanner s) throws IOException{
+		try{
+<span class="nc" id="L292">			System.out.println(&quot;Ingrese la cordenada x del primer punto:&quot;);</span>
+<span class="nc" id="L293">			double xi = s.nextDouble();</span>
+<span class="nc" id="L294">			System.out.println(&quot;Ingrese la cordenada y del primer punto:&quot;);</span>
+<span class="nc" id="L295">			double yi = s.nextDouble();</span>
+<span class="nc" id="L296">			System.out.println(&quot;Ingrese la cordenada x del segundo punto:&quot;);</span>
+<span class="nc" id="L297">			double xf = s.nextDouble();</span>
+<span class="nc" id="L298">			System.out.println(&quot;Ingrese la cordenada y del segundo punto:&quot;);</span>
+<span class="nc" id="L299">			double yf = s.nextDouble();</span>
+<span class="nc" id="L300">			System.out.println(&quot;Ingrese el peso del tramo:&quot;);</span>
+<span class="nc" id="L301">			int peso = s.nextInt();</span>
+<span class="nc" id="L302">			TipoRetorno ret = Sistema.getInstancia().registrarTramo(xi, yi, xf, yf, peso);</span>
+<span class="nc" id="L303">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.ERROR_1){</span>
+<span class="nc" id="L305">				System.out.println(&quot;El peso debe ser mayor que cero.&quot;);</span>
+			}
+<span class="nc bnc" id="L307" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
+<span class="nc" id="L308">				System.out.println(&quot;Coordenadas no válidas.&quot;);</span>
+			}
+<span class="nc bnc" id="L310" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_3){</span>
+<span class="nc" id="L311">				System.out.println(&quot;El tramo ya existe&quot;);</span>
+			}
+<span class="nc" id="L313">			System.in.read();</span>
+<span class="nc" id="L314">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L315">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
+		}
+<span class="nc" id="L317">	}</span>
+	/**
+	 * Abre una ventana del navegador y muestra en un mapa de Google Maps todos los puntos registrados en el sistema.
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
+	public static void mostrarMapa() throws IOException, URISyntaxException{
+<span class="fc" id="L324">		TipoRetorno ret = Sistema.getInstancia().mapaEstado();</span>
+<span class="fc" id="L325">		Desktop.getDesktop().browse(new URI(ret.getValorString()));</span>
+<span class="fc" id="L326">	}</span>
+	/**
+	 * Muestra la mejor ruta al centro más cercano.
+	 * @param s Scanner para leer los datos ingresados por el usuario.
+	 * @throws IOException 
+	 */
+	private static void mejorRuta(Scanner s) throws IOException{
+		try{
+<span class="nc" id="L334">			System.out.println(&quot;Ingrese la coordenada del eje X del apiario:&quot;);</span>
+<span class="nc" id="L335">			double x = s.nextDouble();</span>
+<span class="nc" id="L336">			System.out.println(&quot;Ingrese la coordenada para el eje Y del apiario:&quot;);</span>
+<span class="nc" id="L337">			double y = s.nextDouble();</span>
+<span class="nc" id="L338">			TipoRetorno ret = Sistema.getInstancia().rutaACentroMasCercano(x, y);</span>
+<span class="nc" id="L339">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.OK){</span>
+<span class="nc" id="L341">				System.out.println(ret.getValorString());</span>
+			}
+<span class="nc bnc" id="L343" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_1){</span>
+<span class="nc" id="L344">				System.out.println(&quot;No existe un apiario en el sistema para las coordenadas ingresadas.&quot;);</span>
+			}
+<span class="nc bnc" id="L346" title="All 2 branches missed.">			else if(ret.getTipoError() == TipoError.ERROR_2){</span>
+<span class="nc" id="L347">				System.out.println(&quot;No se encuentra ningún centro que pueda satisfacer la necesidad de extracción de los colmenares.&quot;);</span>
+			}
+<span class="nc" id="L349">			System.in.read();</span>
+<span class="nc" id="L350">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L351">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
+		}
+<span class="nc" id="L353">	}</span>
+	/**
+	 * Lista los apiarios que pertenecen a una ciudad.
+	 * @param s Scanner para leer los datos ingresados por un usuario.
+	 * @throws IOException
+	 */
+	private static void listarApiariosCiudad(Scanner s) throws IOException{
+		try{
+<span class="nc" id="L361">			System.out.println(&quot;Ingrese la coordenada del eje X de la ciudad:&quot;);</span>
+<span class="nc" id="L362">			double x = s.nextDouble();</span>
+<span class="nc" id="L363">			System.out.println(&quot;Ingrese la coordenada para el eje Y de la ciudad:&quot;);</span>
+<span class="nc" id="L364">			double y = s.nextDouble();</span>
+<span class="nc" id="L365">			TipoRetorno ret = Sistema.getInstancia().listadoDeApiariosEnCiudad(x, y);</span>
+<span class="nc" id="L366">			System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L367" title="All 2 branches missed.">			if(ret.getTipoError() == TipoError.OK){</span>
+<span class="nc" id="L368">				System.out.println(ret.getValorString());</span>
+			}
+<span class="nc" id="L370">			System.in.read();</span>
+<span class="nc" id="L371">		} catch (InputMismatchException ime) {</span>
+<span class="nc" id="L372">			System.out.println(&quot;Las coordenadas deben estar en un formato númerico.&quot;);</span>
+		}
+<span class="nc" id="L374">	}</span>
+	/**
+	 * Lista los centros de extraccion existentes en el sistema.
+	 * @throws IOException
+	 */
+	private static void listarCentros() throws IOException{
+<span class="nc" id="L380">		TipoRetorno ret = Sistema.getInstancia().listadoDeCentros();</span>
+<span class="nc" id="L381">		System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">		if(ret.getTipoError() == TipoError.OK){</span>
+<span class="nc" id="L383">			System.out.println(ret.getValorString());</span>
+		}
+<span class="nc" id="L385">		System.in.read();</span>
+<span class="nc" id="L386">	}</span>
+	/**
+	 * Lista los apicultores registrados en el sistema.
+	 * @throws IOException
+	 */
+	private static void listarApicultores() throws IOException{
+<span class="nc" id="L392">		TipoRetorno ret = Sistema.getInstancia().listadoApicultores();</span>
+<span class="nc" id="L393">		System.out.println(ret.getTipoError().toString());</span>
+<span class="nc bnc" id="L394" title="All 2 branches missed.">		if(ret.getTipoError() == TipoError.OK){</span>
+<span class="nc" id="L395">			System.out.println(ret.getValorString());</span>
+		}
+<span class="nc" id="L397">		System.in.read();</span>
+<span class="nc" id="L398">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (23-nov-2014 18:18:58)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>JUnitTests (24-nov-2014 13:30:31)</div></body></html>
